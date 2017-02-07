@@ -16,7 +16,7 @@ namespace Server
         public static void Authorization(string login)
         {
             Content content = new Content("Authorization", login, "*", banedUsers.FindUsers(login).ToString());
-            string sms = content.GetContent(content);
+            string  sms = content.GetContent(content);
             SendMessage(sms, OnlineUsers.onlineUsers.First(c => c.login == login));
         }
 
