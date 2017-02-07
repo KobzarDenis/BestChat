@@ -22,3 +22,6 @@ C:\Users\Professor\Source\Repos\Chat\Server\bin\Debug\EntityFramework.SqlServer.
 C:\Users\Professor\Source\Repos\Chat\Server\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Professor\Source\Repos\Chat\Server\bin\Debug\System.Data.SQLite.xml
 C:\Users\Professor\Source\Repos\Chat\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\C#\Desktop\Chat\Server\bin\Debug\Server.exe.config
+C:\Users\C#\Desktop\Chat\Server\obj\Debug\Server.exe
+C:\Users\C#\Desktop\Chat\Server\obj\Debug\Server.pdb
