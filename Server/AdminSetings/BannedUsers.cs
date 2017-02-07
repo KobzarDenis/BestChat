@@ -4,71 +4,95 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SQLite;
+using System.Data.Common;
 
 namespace Server
 {
     class BannedUsers
     {
-        private static List<string> list = new List<string>();
+        private List<string> list;
 
-        public static void Ban(string login, string time)
+        string databaseName;
+        SQLiteConnection connection;
+
+        public BannedUsers()
+        {
+            this.list = new List<string>();
+            this.databaseName = @"BannedUsers.db";
+            this.connection = new SQLiteConnection(string.Format("Data Source={0};", databaseName));
+            connection.Open();
+        }
+
+        public void Ban(string login, string time)
         {
             OnlineUsers.onlineUsers.First(u => u.login == login).Ban = true;
 
-            string writePath = "BannedUsers.txt";
-
-            StreamWriter write = new StreamWriter(writePath, true, Encoding.Default);
-            //FileInfo file = new FileInfo(writePath);
-           // write = file.AppendText();
-            write.WriteLine(login + ":" + time);
-            write.Close();
-
+            //connection.Open();
+            SQLiteCommand command = new SQLiteCommand("INSERT INTO 'Banned' ('value','time' ) VALUES ('"+login+"','"+time+"');", connection);
+            command.ExecuteNonQuery();
+            //connection.Close();
+            Read();
             ClientComands.Banned(OnlineUsers.onlineUsers.First(u => u.login == login));
         }
 
-        public static void Start()
+        public void Read()
         {
-            string readPath = "BannedUsers.txt";
-            StreamReader read = new StreamReader(readPath, Encoding.Default);
-            string line;
-            while ((line = read.ReadLine()) != null)
+            list = new List<string>();
+            //connection.Open();
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'Banned';", connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            foreach (DbDataRecord record in reader)
             {
-                list.Add(line);
+                string nameUser = record["value"].ToString();
+                string time = record["time"].ToString();
+                string result =nameUser + "_" + time;
+                list.Add(result);
             }
+            //connection.Close();
         }
 
-        public static List<string> GetBannedList()
+        public List<string> GetBannedList()
         {
+            Read();
             return list;
         }
 
-        public static void Unban(string login)
+        public void Unban(string login)
         {
-            string writePath = "BannedUsers.txt";
-
-            StreamWriter write = new StreamWriter(writePath, false, Encoding.Default);
-            //FileInfo file = new FileInfo(writePath);
-           // write = file.AppendText();
-            foreach(string users in list )
-            {
-                var parts = users.Split(':');
-                if (parts[0] == login)
-                {
-                    list.Remove(users);
-                    break;
-                }
-            }
-            foreach (string users in list)
-            {
-                write.WriteLine(users);
-            }
-            write.Close();
-
-            if(OnlineUsers.onlineUsers.Any(u=>u.login==login))
+            //connection.Open();
+            SQLiteCommand command = new SQLiteCommand("DELETE FROM Banned WHERE value= '" + login + "';", connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            //connection.Close();
+            Read();
+            if (OnlineUsers.onlineUsers.Any(u=>u.login==login))
             ClientComands.Unbanned(OnlineUsers.onlineUsers.First(u => u.login == login));
         }
 
-        public static bool FindUsers(string login)
+        public void AutomaticUnban()
+        {
+            while (true)
+            {
+                SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'Banned';", connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+                foreach (DbDataRecord record in reader)
+                {
+                    string nameUser = record["value"].ToString();
+                    string time = record["time"].ToString();
+                    if (time != "forever" && time != "Forever")
+                    {
+                        DateTime dateNow = DateTime.Now;
+                        DateTime dateInDB = Convert.ToDateTime(time);
+                        if (dateInDB <= dateNow)
+                        {
+                            Unban(nameUser);
+                        }
+                    }
+                }
+            }
+        }
+
+        public bool FindUsers(string login)
         {
             foreach (string user in list)
             {

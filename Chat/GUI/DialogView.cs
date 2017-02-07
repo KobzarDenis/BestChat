@@ -29,20 +29,26 @@ namespace Chat
 
         private void btnSendMessage_Click(object sender, EventArgs e)
         {
-            if (privateDialog == false)
+            if (txtMessage.Text != "")
             {
-                if (ClientAPI.Ban == false)
-                    ServerCommands.SendMessage(Parent.Name, ClientAPI.Login, txtMessage.Text);
+                if (privateDialog == false)
+                {
+                    if (ClientAPI.Ban == false)
+                        ServerCommands.SendMessage(Parent.Name, ClientAPI.Login, txtMessage.Text);
+                    else
+                        MessageBox.Show("You are banned from this server! Try again latter please!", "Error!");
+                }
                 else
-                    MessageBox.Show("You are banned from this server! Try get latter please!", "Error!");
+                {
+                    ServerCommands.SendPrivateMessage(Parent.Name, txtMessage.Text);
+                    string str = "[" + ClientAPI.Login + "] : " + txtMessage.Text;
+                    messages.Add(str);
+                    lbMessages.Items.Add(str);
+                }
+                txtMessage.Clear();
+                newMessage = 0;
             }
-            else
-            {
-                ServerCommands.SendPrivateMessage(Parent.Name, txtMessage.Text);
-            }
-            txtMessage.Clear();
-            Parent.Text = Parent.Name;
-            newMessage = 0;
+            else txtMessage.Text = "Write your message!";
         }
 
         public void SetMessage(string loginSender, string message)
@@ -72,6 +78,11 @@ namespace Chat
                 write.WriteLine(message);
             }
             write.Close();
+        }
+
+        private void txtMessage_TextChanged(object sender, EventArgs e)
+        {
+            Parent.Text = Parent.Name;
         }
     }
 }

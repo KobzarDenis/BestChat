@@ -31,6 +31,7 @@ namespace Chat
 
         private void btnShow_Click(object sender, EventArgs e)
         {
+            lbBanUsers.Items.Clear();
             if (users == "BannedUsers")
                 ServerCommands.ShowBannedUsers();
             else if (users == "AllUsers")
@@ -41,7 +42,22 @@ namespace Chat
 
         private void btnBan_Click(object sender, EventArgs e)
         {
-            ServerCommands.Ban(lbBanUsers.SelectedItem.ToString(), "Forever");
+            if (txtTime.Text != "" && cbTimeValue.SelectedItem !=null)
+            {
+                string time = "";
+                switch (cbTimeValue.SelectedItem.ToString())
+                {
+                    case "minutes": time = Convert.ToString(DateTime.Now.AddMinutes(Convert.ToDouble(txtTime.Text))); break;
+                    case "days": time = Convert.ToString(DateTime.Now.AddDays(Convert.ToDouble(txtTime.Text)));       break;
+                    case "weeks": time = Convert.ToString(DateTime.Now.AddDays(Convert.ToDouble(txtTime.Text)*7));    break;
+                    case "months": time = Convert.ToString(DateTime.Now.AddMonths(Convert.ToInt32(txtTime.Text)));    break;
+                    case "years": time = Convert.ToString(DateTime.Now.AddYears(Convert.ToInt32(txtTime.Text)));      break;
+                    case "forever": time = "forever";                                                                 break;
+
+                    default: break;
+                }
+                ServerCommands.Ban(lbBanUsers.SelectedItem.ToString(), time);
+            }
         }
 
         private void btnUnban_Click(object sender, EventArgs e)

@@ -13,8 +13,8 @@ namespace Server
 
         private object block = new object();
         Content contentFromClient;
+        public static BannedUsers banedUsers;
 
-        private Dispatcher dispatcher;
 
         public Dispatcher()
         {
@@ -76,9 +76,9 @@ namespace Server
 
                 case "ShowAllUsersForAdmin":  ClientComands.ShowAllUsersForAdmin(client);                                                                             break;
 
-                case "BanUser"          :     BannedUsers.Ban(contentFromClient.Login, contentFromClient.Message);                                                    break;
+                case "BanUser"          :     banedUsers.Ban(contentFromClient.Login, contentFromClient.Message);                                                    break;
 
-                case "UnbanUser"        :     BannedUsers.Unban(contentFromClient.Login);                                                                             break;
+                case "UnbanUser"        :     banedUsers.Unban(contentFromClient.Login);                                                                             break;
 
                 case "PrivatMessage"    :     ClientComands.PrivatMessage(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message);          break;
 

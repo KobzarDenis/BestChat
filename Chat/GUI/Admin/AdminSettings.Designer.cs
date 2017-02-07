@@ -35,13 +35,15 @@
             this.rbBannedUsers = new System.Windows.Forms.RadioButton();
             this.btnShow = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtTime = new System.Windows.Forms.TextBox();
+            this.cbTimeValue = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnBan
             // 
-            this.btnBan.Location = new System.Drawing.Point(12, 115);
+            this.btnBan.Location = new System.Drawing.Point(12, 142);
             this.btnBan.Name = "btnBan";
-            this.btnBan.Size = new System.Drawing.Size(75, 23);
+            this.btnBan.Size = new System.Drawing.Size(126, 23);
             this.btnBan.TabIndex = 0;
             this.btnBan.Text = "Ban";
             this.btnBan.UseVisualStyleBackColor = true;
@@ -49,9 +51,9 @@
             // 
             // btnUnban
             // 
-            this.btnUnban.Location = new System.Drawing.Point(272, 115);
+            this.btnUnban.Location = new System.Drawing.Point(221, 142);
             this.btnUnban.Name = "btnUnban";
-            this.btnUnban.Size = new System.Drawing.Size(75, 23);
+            this.btnUnban.Size = new System.Drawing.Size(126, 23);
             this.btnUnban.TabIndex = 1;
             this.btnUnban.Text = "Unban";
             this.btnUnban.UseVisualStyleBackColor = true;
@@ -62,7 +64,7 @@
             this.lbBanUsers.FormattingEnabled = true;
             this.lbBanUsers.Location = new System.Drawing.Point(12, 66);
             this.lbBanUsers.Name = "lbBanUsers";
-            this.lbBanUsers.Size = new System.Drawing.Size(711, 43);
+            this.lbBanUsers.Size = new System.Drawing.Size(335, 43);
             this.lbBanUsers.TabIndex = 2;
             // 
             // rbAllUsers
@@ -101,7 +103,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(667, 270);
+            this.btnClose.Location = new System.Drawing.Point(273, 189);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 6;
@@ -109,12 +111,36 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // txtTime
+            // 
+            this.txtTime.Location = new System.Drawing.Point(12, 113);
+            this.txtTime.Name = "txtTime";
+            this.txtTime.Size = new System.Drawing.Size(38, 20);
+            this.txtTime.TabIndex = 7;
+            // 
+            // cbTimeValue
+            // 
+            this.cbTimeValue.FormattingEnabled = true;
+            this.cbTimeValue.Items.AddRange(new object[] {
+            "minutes",
+            "days",
+            "weeks",
+            "months",
+            "years",
+            "forever"});
+            this.cbTimeValue.Location = new System.Drawing.Point(60, 112);
+            this.cbTimeValue.Name = "cbTimeValue";
+            this.cbTimeValue.Size = new System.Drawing.Size(78, 21);
+            this.cbTimeValue.TabIndex = 8;
+            // 
             // AdminSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 294);
+            this.ClientSize = new System.Drawing.Size(360, 225);
             this.ControlBox = false;
+            this.Controls.Add(this.cbTimeValue);
+            this.Controls.Add(this.txtTime);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.rbBannedUsers);
@@ -138,5 +164,7 @@
         private System.Windows.Forms.RadioButton rbBannedUsers;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.TextBox txtTime;
+        private System.Windows.Forms.ComboBox cbTimeValue;
     }
 }

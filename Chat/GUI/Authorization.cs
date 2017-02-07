@@ -20,14 +20,21 @@ namespace Chat
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            switch (txtLogin.Text)
+            if (txtLogin.Text == "" || txtLogin.Text == "Put your login")
             {
-                case "admin": ClientAPI.Login = txtLogin.Text; ClientAPI.Role = "admin"; break;
-                default     : ClientAPI.Login = txtLogin.Text; ClientAPI.Role = "user";  break;
+                MessageBox.Show("Please, put your natural login.", "Error!");
             }
-            ServerCommands.Authorization(txtLogin.Text);
-            new MainWindow().Show();
-            Hide();
+            else
+            {
+                switch (txtLogin.Text)
+                {
+                    case "admin": ClientAPI.Login = txtLogin.Text; ClientAPI.Role = "admin"; break;
+                    default: ClientAPI.Login = txtLogin.Text; ClientAPI.Role = "user"; break;
+                }
+                ServerCommands.Authorization(txtLogin.Text);
+                new MainWindow().Show();
+                Hide();
+            }
         }
     }
 }

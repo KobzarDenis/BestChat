@@ -16,3 +16,15 @@ C:\Users\Professor\Documents\Visual Studio 2015\Projects\Chat\Chat\bin\Debug\New
 C:\Users\Professor\Source\Repos\Chat\Chat\bin\Debug\Chat.exe.config
 C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.exe
 C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.pdb
+C:\Users\Professor\Source\Repos\Chat\Chat\bin\Debug\Chat.exe
+C:\Users\Professor\Source\Repos\Chat\Chat\bin\Debug\Chat.pdb
+C:\Users\Professor\Source\Repos\Chat\Chat\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Professor\Source\Repos\Chat\Chat\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.csprojResolveAssemblyReference.cache
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.AdminSettings.resources
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.CreateMyDialog.resources
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.Authorization.resources
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.DialogView.resources
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.MainWindow.resources
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.Properties.Resources.resources
+C:\Users\Professor\Source\Repos\Chat\Chat\obj\Debug\Chat.csproj.GenerateResource.Cache

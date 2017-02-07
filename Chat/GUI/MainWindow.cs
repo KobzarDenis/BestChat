@@ -41,11 +41,12 @@ namespace Chat
         {
             switch ((string)((ToolStripItem)sender).Text)
             {
-                case "CreateDialog"      : new CreateMyDialog().Show();                     break;
-                case "My dialogs"        : ShowMyDialogs();                                 break;
-                case "All dialogs"       : RequestShowAllDialogs();                         break;
-                case "Show online users" : RequestShowOnlineUsers();                        break;
-                case "Log Out/Exit"      : ServerCommands.LogOut(ClientAPI.Login); Close(); break;
+                case "CreateDialog"      : if(ClientAPI.Ban==false) new CreateMyDialog().Show();                    
+                                           else MessageBox.Show("You are banned from this server! Try again latter please!", "Error!");                            break;
+                case "My dialogs"        : ShowMyDialogs();                                                                                                        break;
+                case "All dialogs"       : RequestShowAllDialogs();                                                                                                break;
+                case "Show online users" : RequestShowOnlineUsers();                                                                                               break;
+                case "Log Out/Exit"      : ServerCommands.LogOut(ClientAPI.Login); Close();                                                                        break;
                 case "Save dialog"       : collectionOfDialogsView.GetSelectedDialogView(tabC_Dialogs.SelectedTab.Text).SaveDialog(tabC_Dialogs.SelectedTab.Text); break;
 
                 default: break;
@@ -54,13 +55,19 @@ namespace Chat
 
         private void btnInvite_Click(object sender, EventArgs e)
         {
-            ServerCommands.InviteToDialog(tabC_Dialogs.SelectedTab.Text, lbUsers.SelectedItem.ToString());
+            if (lbUsers.SelectedItem != null)
+            {
+                ServerCommands.InviteToDialog(tabC_Dialogs.SelectedTab.Text, lbUsers.SelectedItem.ToString());
+            }
         }
 
         private void btnToComeIn_Click(object sender, EventArgs e)
         {
-            ServerCommands.ToComeIn_TheDialog(lbDialogs.SelectedItem.ToString(), ClientAPI.Login);
-            CreateDialogWhereImComeIn(lbDialogs.SelectedItem.ToString());
+            if (lbDialogs.SelectedItem != null)
+            {
+                ServerCommands.ToComeIn_TheDialog(lbDialogs.SelectedItem.ToString(), ClientAPI.Login);
+                CreateDialogWhereImComeIn(lbDialogs.SelectedItem.ToString());
+            }
         }
 
         #region Comand to create and close dialog
@@ -187,7 +194,10 @@ namespace Chat
 
         private void btnPrivateMessage_Click(object sender, EventArgs e)
         {
-            CreateDialog(lbUsers.SelectedItem.ToString(), true);
+            if (lbUsers.SelectedItem != null)
+            {
+                CreateDialog(lbUsers.SelectedItem.ToString(), true);
+            }
         }
     }
 }

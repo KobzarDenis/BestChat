@@ -11,10 +11,11 @@ namespace Server
     class ClientComands
     {
         private static object block = new object();
+        public static BannedUsers banedUsers;
 
         public static void Authorization(string login)
         {
-            Content content = new Content("Authorization", login, "*", BannedUsers.FindUsers(login).ToString());
+            Content content = new Content("Authorization", login, "*", banedUsers.FindUsers(login).ToString());
             string sms = content.GetContent(content);
             SendMessage(sms, OnlineUsers.onlineUsers.First(c => c.login == login));
         }
@@ -65,9 +66,9 @@ namespace Server
         public static void ShowBannedUsers(Client client)
         {
             Content content = new Content("ShowBannedUsers", "*", "*", "");
-            foreach (string users in BannedUsers.GetBannedList())
+            foreach (string users in banedUsers.GetBannedList())
             {
-                    var parts = users.Split(':');
+                    var parts = users.Split('_');
                     content.Message += parts[0] + ";";
             }
             string sms = content.GetContent(content);
