@@ -29,7 +29,7 @@ window.addEventListener("load", function () {
 });
 
 function onClientOpened(){
-    writeToDiv("\nJS Client Opened!!!");
+    writeToDiv("JS Client Opened!!!");
 }
 
 function onClientMessage(event) {
@@ -67,4 +67,49 @@ function create() {
 
     document.getElementById("Chat").childNodes.style += "<p  >PIDOR</p>";
 
+}
+
+function SignUp(name, login, password)
+{
+    client.send("{'Action': 'SignUP', 'Login':'" + name + "' , 'Role': 'User', 'NameDialog':'" + login + "', 'Message': '" + password + "'}");
+}
+
+function InviteToDialog(nameUsers, dialog)
+{
+    client.send("{'Action': 'Invite', 'Login':'" + nameUsers + "' , 'Role': 'User', 'NameDialog':'" + dialog + "', 'Message': '*'}");
+}
+
+function SendMessage( dialog, login, sms)
+{
+    client.send("{'Action': 'SendMessage', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'" + dialog + "', 'Message': '"+sms+"'}");
+}
+
+function CloseDialog(dialog, login)
+{
+    client.send("{'Action': 'CloseDialog', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'" + dialog + "', 'Message': '*'}");
+}
+
+function  ToComeIn_TheDialog(dialog, login)
+{
+    client.send("{'Action': 'ToComeIn', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'" + dialog + "', 'Message': '*'}");
+}
+
+function ShowAllDialogs(login)
+{
+    client.send("{'Action': 'ShowAllDialogs', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'*', 'Message': '*'}");
+}
+
+function ShowOnlineUsers(login)
+{
+    client.send("{'Action': 'ShowOnlineUsers', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'*', 'Message': '*'}");
+}
+
+function CreateDialog(login, nameDialod)
+{
+    client.send("{'Action': 'CreateDialog', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'" + nameDialod + "', 'Message': '*'}");
+}
+
+function LogOut(login)
+{
+    client.send("{'Action': 'LogOut', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'*', 'Message': '*'}");
 }
