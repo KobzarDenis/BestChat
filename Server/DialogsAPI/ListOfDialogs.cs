@@ -38,10 +38,5 @@ namespace Server
             return listDialogs;
         }
 
-        //public static SetMessageToDialog(string nameDialog, )
-        //{
-
-        //}
-
     }
 }

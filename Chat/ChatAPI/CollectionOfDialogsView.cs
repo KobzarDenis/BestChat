@@ -38,11 +38,6 @@ namespace Chat
             collections.Remove(collections.FirstOrDefault(d => d.Key == key));
         }
 
-        public void FindDialogAndSetContent(string content)
-        {
-            List<string> listContent = new List<string>();
-        }
-
         public void GetMessage(string loginSender, string message, string key)
         {
             foreach (DialogView dialogView in collections)
