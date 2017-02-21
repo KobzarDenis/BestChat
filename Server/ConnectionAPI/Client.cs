@@ -11,6 +11,7 @@ namespace Server
     {
         public string login;
         public string role;
+        public string name;
         public bool Ban = false;
 
         public TcpClient client;

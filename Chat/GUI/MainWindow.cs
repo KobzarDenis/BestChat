@@ -15,10 +15,11 @@ namespace Chat
         CollectionOfDialogsView collectionOfDialogsView;
         CollectionOfTabPages collectionOfTabPages;
         AdminSettings adminSetings;
+        Authorization authorization;
 
         public static int newMessage = 1;
 
-        public MainWindow()
+        public MainWindow(Authorization a)
         {
             DialogView.mainWindow = this;
             CreateMyDialog.mainWindow = this;
@@ -35,6 +36,7 @@ namespace Chat
                 btnAdminSettings.Visible = false;
                 btnAdminSettings.Enabled = false;
             }
+            authorization = a;
         }
 
         private void MenuHandler(object sender, EventArgs e)
@@ -46,7 +48,7 @@ namespace Chat
                 case "My dialogs"        : ShowMyDialogs();                                                                                                        break;
                 case "All dialogs"       : RequestShowAllDialogs();                                                                                                break;
                 case "Show online users" : RequestShowOnlineUsers();                                                                                               break;
-                case "Log Out/Exit"      : ServerCommands.LogOut(ClientAPI.Login); Close();                                                                        break;
+                case "Log Out/Exit"      : ServerCommands.LogOut(ClientAPI.Login); Close();   authorization.Show();                                                break;
                 case "Save dialog"       : collectionOfDialogsView.GetSelectedDialogView(tabC_Dialogs.SelectedTab.Text).SaveDialog(tabC_Dialogs.SelectedTab.Text); break;
 
                 default: break;
@@ -55,7 +57,7 @@ namespace Chat
 
         private void btnInvite_Click(object sender, EventArgs e)
         {
-            if (lbUsers.SelectedItem != null)
+            if (lbUsers.SelectedItem != null && tabC_Dialogs.SelectedTab!=null && tabC_Dialogs.SelectedTab.Text!="")
             {
                 ServerCommands.InviteToDialog(tabC_Dialogs.SelectedTab.Text, lbUsers.SelectedItem.ToString());
             }
@@ -198,6 +200,11 @@ namespace Chat
             {
                 CreateDialog(lbUsers.SelectedItem.ToString(), true);
             }
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            authorization.Close();
         }
     }
 }

@@ -30,5 +30,10 @@ namespace Chat
         {
             Close();
         }
+
+        private void txtNameDialog_Click(object sender, EventArgs e)
+        {
+            txtNameDialog.Text = "";
+        }
     }
 }

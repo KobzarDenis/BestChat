@@ -1,0 +1,68 @@
+﻿.AuthorDiv{
+    display : block;
+}
+
+#chatDiv{
+    width:80%;
+    left:10%;
+    border: 1px solid black;
+}
+
+#btnLogIn{
+    width:10%;
+    left:10%;
+    border: 1px solid black;
+}
+
+#btnSignUp{
+    width:10%;
+    left:10%;
+    border: 1px solid black;
+}
+
+
+
+#Chat{
+    display : none;
+    margin-right:20%;
+    margin-top:20%;
+}
+#name 
+{
+    width:200px;
+    height:200px;
+    left:30%;
+    margin-bottom:10%;
+}
+
+#btnInvite{
+    right:100px;
+    width:10%;
+}
+#btnToComeIn {
+    left:150px;
+    width:10%;
+}
+#listOfMessages{
+    width:400px;
+    height:400px;
+}
+
+#txtMessage{
+    width:350px;
+    height:50px;
+}
+
+#btnSendMessage{
+    width:50px;
+    height:50px;
+}
+
+
+#listOfDialogs{
+    width:300px;
+}
+
+#listOfUsers{
+    width:300px;
+}

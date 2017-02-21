@@ -16,25 +16,50 @@ namespace Chat
         {
             InitializeComponent();
             ServerCommands.me = ClientAPI.GetInstance();
+            Dispatcher.authorization = this;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtLogin.Text == "" || txtLogin.Text == "Put your login")
+            if (txtLogin.Text == "" || txtLogin.Text == "Put your login" )
             {
                 MessageBox.Show("Please, put your natural login.", "Error!");
             }
             else
             {
-                switch (txtLogin.Text)
-                {
-                    case "admin": ClientAPI.Login = txtLogin.Text; ClientAPI.Role = "admin"; break;
-                    default: ClientAPI.Login = txtLogin.Text; ClientAPI.Role = "user"; break;
-                }
-                ServerCommands.Authorization(txtLogin.Text);
-                new MainWindow().Show();
-                Hide();
+
+                ServerCommands.Authorization(txtLogin.Text, txtPass.Text);
             }
+        }
+
+        public void Authorized(string name)
+        {
+            Invoke(new Action(() =>
+            {
+                 ClientAPI.Login = name;
+
+                 switch (name)
+                 {
+                     case "admin": ClientAPI.Role = "admin"; Hide(); new MainWindow(this).Show(); break;
+                     case "Not registred": MessageBox.Show("You are not registred this server", "Error"); break;
+                     default: ClientAPI.Role = "user"; Hide(); new MainWindow(this).Show(); break;
+                 }
+            }));
+        }
+
+        private void txtLogin_Click(object sender, EventArgs e)
+        {
+            txtLogin.Text = "";
+        }
+
+        private void txtPass_Click(object sender, EventArgs e)
+        {
+            txtPass.Text = "";
+        }
+
+        private void btnSignUP_Click(object sender, EventArgs e)
+        {
+            new SignUP_Form().Show();
         }
     }
 }

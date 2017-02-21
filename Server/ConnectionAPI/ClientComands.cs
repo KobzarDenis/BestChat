@@ -12,12 +12,33 @@ namespace Server
     {
         private static object block = new object();
         public static BannedUsers banedUsers;
+        public static RegistredUsers registredUsers;
 
-        public static void Authorization(string login)
+        public static void Authorization(string login, string password, Client client)
         {
-            Content content = new Content("Authorization", login, "*", banedUsers.FindUsers(login).ToString());
+            client.name = registredUsers.Read(login, password);
+            OnlineUsers.onlineUsers.Add(client);
+            Content content = new Content("Authorization", login, client.name, banedUsers.FindUsers(login).ToString());
             string sms = content.GetContent(content);
             SendMessage(sms, OnlineUsers.onlineUsers.First(c => c.login == login));
+            if (client.name == "" || client.name == "Not registred")
+                OnlineUsers.onlineUsers.Remove(client);
+        }
+
+        public static void SignUP(string name, string login, string password, Client client)
+        {
+            if (registredUsers.Create(name, login, password) == true)
+            {
+                Content content = new Content("SignUP", "*", "*", "Success");
+                string sms = content.GetContent(content);
+                SendMessage(sms, client);
+            }
+            else
+            {
+                Content content = new Content("SignUP", "*", "*", "No success");
+                string sms = content.GetContent(content);
+                SendMessage(sms, client);
+            }
         }
 
         public static void InviteToDialog(string login, string nameDialog)
@@ -25,8 +46,8 @@ namespace Server
             Content content = new Content("Invite", login, nameDialog, "*");
             string sms = content.GetContent(content);
 
-            ListOfDialogs.GetListDialogs().First(d => d.NameDialog == nameDialog).dialog.Add(OnlineUsers.onlineUsers.First(c => c.login == login));
-            SendMessage(sms, OnlineUsers.onlineUsers.First(c => c.login == login));
+            ListOfDialogs.GetListDialogs().First(d => d.NameDialog == nameDialog).dialog.Add(OnlineUsers.onlineUsers.First(c => c.name == login));
+            SendMessage(sms, OnlineUsers.onlineUsers.First(c => c.name == login));
         }
 
         public static void NewMessage(string nameDialog, string message, string login)
@@ -48,7 +69,7 @@ namespace Server
         {
             Content content = new Content("PrivatMessage", senderLogin, senderLogin, message);
             string sms = content.GetContent(content);
-            SendMessage(sms, OnlineUsers.onlineUsers.First(u => u.login == takerLogin));
+            SendMessage(sms, OnlineUsers.onlineUsers.First(u => u.name == takerLogin));
         }
 
         public static void ShowOnlineUsers(Client client)
@@ -56,8 +77,8 @@ namespace Server
             Content content = new Content("ShowOnlineUsers", "*", "*", "");
             foreach (Client cl in OnlineUsers.onlineUsers)
             {
-                    if(cl.role!="admin" && cl.login!=client.login)
-                    content.Message += cl.login + ";"; 
+                    if(cl.role!="admin" && cl.name!=client.name)
+                    content.Message += cl.name + ";"; 
             }
             string sms = content.GetContent(content);
             SendMessage(sms, client);
@@ -106,7 +127,7 @@ namespace Server
             Content content = new Content("ShowAllDialogs", "*", "*", "");
             foreach (Dialog dialog in ListOfDialogs.GetListDialogs())
             {
-                if(dialog.PrivatDialog==false)
+                if(!dialog.PrivatDialog)
                     content.Message += dialog.NameDialog + ";";
             }
             string sms = content.GetContent(content);
@@ -115,12 +136,12 @@ namespace Server
 
         public static void LogOut(string login)
         {
-            OnlineUsers.onlineUsers.Remove(OnlineUsers.onlineUsers.First(c => c.login == login));
+            OnlineUsers.onlineUsers.Remove(OnlineUsers.onlineUsers.First(c => c.name == login));
             foreach (Dialog dialog in ListOfDialogs.GetListDialogs())
             {
                 foreach(Client client in dialog.dialog)
                 {
-                    if (client.login == login)
+                    if (client.name == login)
                     {
                         dialog.dialog.Remove(client);
                         return;

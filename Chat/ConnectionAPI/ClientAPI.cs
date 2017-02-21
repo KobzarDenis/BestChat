@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WebSocket4Net;
 
 namespace Chat
 {
@@ -26,57 +29,39 @@ namespace Chat
         public static bool Ban { get; set; }
 
         Dispatcher dispatcher;
-        private const int Port = 5555;
+        private readonly string socketUrl = ConfigurationManager.AppSettings["wssUrl"];
 
-        private TcpClient client;
-        private NetworkStream networkStream;
+        private WebSocket webSocketClient; // Обьявление веб сокет клиента
 
-        private Thread threadListen;
-
-        public ClientAPI()
+        private ClientAPI()
         {
             try
             {
                 dispatcher = Dispatcher.GetInstance();
                 Init();
-                ThreadInit();
             }
             catch (Exception e)
             {
-                throw e.InnerException;
+                MessageBox.Show("Server is not avaliable now", "Sorry");
+                //throw e.InnerException;
             }
         }
 
         private void Init()
         {
-            client = new TcpClient("localhost", Port);
-            networkStream = client.GetStream();
-        }
-
-        private void ThreadInit()
-        {
-            threadListen = new Thread(new ThreadStart(Listen));
-            threadListen.Start();
+            webSocketClient = new WebSocket(socketUrl);            //Инициализация веб сокет клиента 
+            webSocketClient.Open();                                //Открытие соединения
+            webSocketClient.MessageReceived += OnMessageReceived;  //Присваивание обрабочика для приема смс
         }
 
         public void Say(string message)
         {
-            StreamWriter streamWriter = new StreamWriter(networkStream);
-            streamWriter.WriteLine(message);
-            streamWriter.Flush();
+            webSocketClient.Send(message);        // отправка сообщения на сервер
         }
 
-        public void Listen()
+        public void OnMessageReceived(object sender, MessageReceivedEventArgs e)
         {
-            StreamReader streamReader = new StreamReader(networkStream);
-            while (true)
-            {
-                if (networkStream.DataAvailable)
-                {
-                    var message = streamReader.ReadLine();
-                    dispatcher.OnMessageRecieved(message);
-                }
-            }
+            dispatcher.OnMessageRecieved(e.Message);
         }
     }
 }

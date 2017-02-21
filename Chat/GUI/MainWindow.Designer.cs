@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.ChatMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveDialogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +50,7 @@
             this.lableMyName = new System.Windows.Forms.Label();
             this.btnPrivateMessage = new System.Windows.Forms.Button();
             this.btnAdminSettings = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.ChatMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,11 +60,8 @@
             this.fileToolStripMenuItem,
             this.dialogsToolStripMenuItem,
             this.usersToolStripMenuItem});
-            this.ChatMenu.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.ChatMenu, "ChatMenu");
             this.ChatMenu.Name = "ChatMenu";
-            this.ChatMenu.Size = new System.Drawing.Size(711, 24);
-            this.ChatMenu.TabIndex = 1;
-            this.ChatMenu.Text = "ChatMenu";
             // 
             // fileToolStripMenuItem
             // 
@@ -71,26 +70,23 @@
             this.toolStripSeparator1,
             this.logOutExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // saveDialogToolStripMenuItem
             // 
             this.saveDialogToolStripMenuItem.Name = "saveDialogToolStripMenuItem";
-            this.saveDialogToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.saveDialogToolStripMenuItem.Text = "Save dialog";
+            resources.ApplyResources(this.saveDialogToolStripMenuItem, "saveDialogToolStripMenuItem");
             this.saveDialogToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(137, 6);
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // logOutExitToolStripMenuItem
             // 
             this.logOutExitToolStripMenuItem.Name = "logOutExitToolStripMenuItem";
-            this.logOutExitToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.logOutExitToolStripMenuItem.Text = "Log Out/Exit";
+            resources.ApplyResources(this.logOutExitToolStripMenuItem, "logOutExitToolStripMenuItem");
             this.logOutExitToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
             // 
             // dialogsToolStripMenuItem
@@ -100,28 +96,24 @@
             this.myDialogsToolStripMenuItem,
             this.allDialogsToolStripMenuItem});
             this.dialogsToolStripMenuItem.Name = "dialogsToolStripMenuItem";
-            this.dialogsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.dialogsToolStripMenuItem.Text = "Dialogs";
+            resources.ApplyResources(this.dialogsToolStripMenuItem, "dialogsToolStripMenuItem");
             // 
             // createDialogToolStripMenuItem
             // 
             this.createDialogToolStripMenuItem.Name = "createDialogToolStripMenuItem";
-            this.createDialogToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.createDialogToolStripMenuItem.Text = "CreateDialog";
+            resources.ApplyResources(this.createDialogToolStripMenuItem, "createDialogToolStripMenuItem");
             this.createDialogToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
             // 
             // myDialogsToolStripMenuItem
             // 
             this.myDialogsToolStripMenuItem.Name = "myDialogsToolStripMenuItem";
-            this.myDialogsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.myDialogsToolStripMenuItem.Text = "My dialogs";
+            resources.ApplyResources(this.myDialogsToolStripMenuItem, "myDialogsToolStripMenuItem");
             this.myDialogsToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
             // 
             // allDialogsToolStripMenuItem
             // 
             this.allDialogsToolStripMenuItem.Name = "allDialogsToolStripMenuItem";
-            this.allDialogsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.allDialogsToolStripMenuItem.Text = "All dialogs";
+            resources.ApplyResources(this.allDialogsToolStripMenuItem, "allDialogsToolStripMenuItem");
             this.allDialogsToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
             // 
             // usersToolStripMenuItem
@@ -129,114 +121,87 @@
             this.usersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showOnlineUsersToolStripMenuItem});
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.usersToolStripMenuItem.Text = "Users";
+            resources.ApplyResources(this.usersToolStripMenuItem, "usersToolStripMenuItem");
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
             // 
             // showOnlineUsersToolStripMenuItem
             // 
             this.showOnlineUsersToolStripMenuItem.Name = "showOnlineUsersToolStripMenuItem";
-            this.showOnlineUsersToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.showOnlineUsersToolStripMenuItem.Text = "Show online users";
+            resources.ApplyResources(this.showOnlineUsersToolStripMenuItem, "showOnlineUsersToolStripMenuItem");
             this.showOnlineUsersToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
             // 
             // lbUsers
             // 
             this.lbUsers.FormattingEnabled = true;
-            this.lbUsers.Location = new System.Drawing.Point(12, 49);
+            resources.ApplyResources(this.lbUsers, "lbUsers");
             this.lbUsers.Name = "lbUsers";
-            this.lbUsers.Size = new System.Drawing.Size(191, 134);
-            this.lbUsers.TabIndex = 2;
             // 
             // tabC_Dialogs
             // 
-            this.tabC_Dialogs.Location = new System.Drawing.Point(210, 27);
+            resources.ApplyResources(this.tabC_Dialogs, "tabC_Dialogs");
             this.tabC_Dialogs.Name = "tabC_Dialogs";
             this.tabC_Dialogs.SelectedIndex = 0;
-            this.tabC_Dialogs.Size = new System.Drawing.Size(500, 400);
-            this.tabC_Dialogs.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 28);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "List of users :";
             // 
             // lbDialogs
             // 
             this.lbDialogs.FormattingEnabled = true;
-            this.lbDialogs.Location = new System.Drawing.Point(15, 264);
+            resources.ApplyResources(this.lbDialogs, "lbDialogs");
             this.lbDialogs.Name = "lbDialogs";
-            this.lbDialogs.Size = new System.Drawing.Size(191, 134);
-            this.lbDialogs.TabIndex = 4;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 248);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "List of dialogs :";
             // 
             // btnInvite
             // 
-            this.btnInvite.Location = new System.Drawing.Point(12, 189);
+            resources.ApplyResources(this.btnInvite, "btnInvite");
             this.btnInvite.Name = "btnInvite";
-            this.btnInvite.Size = new System.Drawing.Size(90, 23);
-            this.btnInvite.TabIndex = 6;
-            this.btnInvite.Text = "Invite";
             this.btnInvite.UseVisualStyleBackColor = true;
             this.btnInvite.Click += new System.EventHandler(this.btnInvite_Click);
             // 
             // btnToComeIn
             // 
-            this.btnToComeIn.Location = new System.Drawing.Point(12, 404);
+            resources.ApplyResources(this.btnToComeIn, "btnToComeIn");
             this.btnToComeIn.Name = "btnToComeIn";
-            this.btnToComeIn.Size = new System.Drawing.Size(191, 23);
-            this.btnToComeIn.TabIndex = 7;
-            this.btnToComeIn.Text = "To come in";
             this.btnToComeIn.UseVisualStyleBackColor = true;
             this.btnToComeIn.Click += new System.EventHandler(this.btnToComeIn_Click);
             // 
             // lableMyName
             // 
-            this.lableMyName.AutoSize = true;
-            this.lableMyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lableMyName.Location = new System.Drawing.Point(563, 0);
+            resources.ApplyResources(this.lableMyName, "lableMyName");
             this.lableMyName.Name = "lableMyName";
-            this.lableMyName.Size = new System.Drawing.Size(104, 17);
-            this.lableMyName.TabIndex = 8;
-            this.lableMyName.Text = "lableMyName";
             // 
             // btnPrivateMessage
             // 
-            this.btnPrivateMessage.Location = new System.Drawing.Point(114, 189);
+            resources.ApplyResources(this.btnPrivateMessage, "btnPrivateMessage");
             this.btnPrivateMessage.Name = "btnPrivateMessage";
-            this.btnPrivateMessage.Size = new System.Drawing.Size(90, 23);
-            this.btnPrivateMessage.TabIndex = 9;
-            this.btnPrivateMessage.Text = "Private";
             this.btnPrivateMessage.UseVisualStyleBackColor = true;
             this.btnPrivateMessage.Click += new System.EventHandler(this.btnPrivateMessage_Click);
             // 
             // btnAdminSettings
             // 
-            this.btnAdminSettings.Location = new System.Drawing.Point(12, 218);
+            resources.ApplyResources(this.btnAdminSettings, "btnAdminSettings");
             this.btnAdminSettings.Name = "btnAdminSettings";
-            this.btnAdminSettings.Size = new System.Drawing.Size(191, 23);
-            this.btnAdminSettings.TabIndex = 10;
-            this.btnAdminSettings.Text = "Admin setings";
             this.btnAdminSettings.UseVisualStyleBackColor = true;
             this.btnAdminSettings.Click += new System.EventHandler(this.btnAdminSettings_Click);
             // 
+            // button1
+            // 
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 443);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAdminSettings);
             this.Controls.Add(this.btnPrivateMessage);
             this.Controls.Add(this.lableMyName);
@@ -250,7 +215,7 @@
             this.Controls.Add(this.ChatMenu);
             this.MainMenuStrip = this.ChatMenu;
             this.Name = "MainWindow";
-            this.Text = "MainWindow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.ChatMenu.ResumeLayout(false);
             this.ChatMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -280,5 +245,6 @@
         private System.Windows.Forms.ToolStripMenuItem logOutExitToolStripMenuItem;
         private System.Windows.Forms.Button btnPrivateMessage;
         private System.Windows.Forms.Button btnAdminSettings;
+        private System.Windows.Forms.Button button1;
     }
 }

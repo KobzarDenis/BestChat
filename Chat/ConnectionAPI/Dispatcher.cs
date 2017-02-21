@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Chat
 {
@@ -22,7 +23,9 @@ namespace Chat
         public static MainWindow mainWindow;
         private CollectionOfDialogsView collectionOfDialogsView;
         private CollectionOfTabPages collectionOfTabPages;
+        public static Authorization authorization;
         public static AdminSettings adminSetings;
+        public static SignUP_Form signUP_Form;
 
         private Dispatcher()
         {
@@ -37,9 +40,13 @@ namespace Chat
 
             switch(contentFromServer.Action)
             {
-                case "Authorization"   : if (contentFromServer.Message == "True") ClientAPI.Ban = true;                                                         break;
+                case "Authorization"   :  if (contentFromServer.Message == "True") ClientAPI.Ban = true;
+                                          authorization.Authorized(contentFromServer.NameDialog);                                                               break;
 
-                case "Invite"          : mainWindow.CreateDialog(contentFromServer.NameDialog, false);                                                          break;
+                case "SignUP"          :  if (contentFromServer.Message == "Success") signUP_Form.Success(true);
+                                          else if (contentFromServer.Message == "No success") signUP_Form.Success(false);                                       break;
+
+                case "Invite"          :  mainWindow.CreateDialog(contentFromServer.NameDialog, false);                                                         break;
 
                 case "SendMessage"     :  if(contentFromServer.Login!= ClientAPI.Login) mainWindow.NewMessage(contentFromServer.NameDialog);
                                           collectionOfDialogsView.GetMessage(contentFromServer.Login, contentFromServer.Message, contentFromServer.NameDialog); break;
@@ -49,7 +56,7 @@ namespace Chat
 
                 case "ShowAllDialogs"  :  var dialogs = contentFromServer.Message.Split(';'); mainWindow.ShowAllDialogs(dialogs);                               break;
 
-                case "ShowBannedUsers" :  var bannedUsers = contentFromServer.Message.Split(';'); adminSetings.ShowUsers(bannedUsers);                       break;
+                case "ShowBannedUsers" :  var bannedUsers = contentFromServer.Message.Split(';'); adminSetings.ShowUsers(bannedUsers);                          break;
 
                 case "ShowAllUsersForAdmin": var allUsers = contentFromServer.Message.Split(';'); adminSetings.ShowUsers(allUsers);                             break;
 

@@ -14,8 +14,6 @@ namespace Server
         private object block = new object();
         Content contentFromClient;
         public static BannedUsers banedUsers;
-
-
         public Dispatcher()
         {
 
@@ -52,8 +50,9 @@ namespace Server
             {
                 case "Authorization"    :     client.login = contentFromClient.Login;
                                               client.role = contentFromClient.Role;
-                                              OnlineUsers.onlineUsers.Add(client);
-                                              ClientComands.Authorization(contentFromClient.Login);                                                                   break;
+                                              ClientComands.Authorization(contentFromClient.Login, contentFromClient.NameDialog, client);                             break;
+
+                case "SignUP":                ClientComands.SignUP(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message, client);         break;
 
                 case "Invite"           :     ClientComands.InviteToDialog(contentFromClient.Login, contentFromClient.NameDialog);                                    break;
 
@@ -76,9 +75,9 @@ namespace Server
 
                 case "ShowAllUsersForAdmin":  ClientComands.ShowAllUsersForAdmin(client);                                                                             break;
 
-                case "BanUser"          :     banedUsers.Ban(contentFromClient.Login, contentFromClient.Message);                                                    break;
+                case "BanUser"          :     banedUsers.Ban(contentFromClient.Login, contentFromClient.Message);                                                     break;
 
-                case "UnbanUser"        :     banedUsers.Unban(contentFromClient.Login);                                                                             break;
+                case "UnbanUser"        :     banedUsers.Unban(contentFromClient.Login);                                                                              break;
 
                 case "PrivatMessage"    :     ClientComands.PrivatMessage(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message);          break;
 

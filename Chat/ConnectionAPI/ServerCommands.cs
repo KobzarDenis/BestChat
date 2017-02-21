@@ -15,9 +15,16 @@ namespace Chat
 
         }
 
-        public static void Authorization(string login)
+        public static void Authorization(string login, string password)
         {
-            Content content = new Content("Authorization", login, ClientAPI.Role, "*", "*");
+            Content content = new Content("Authorization", login, ClientAPI.Role, password, "*");
+            string message = content.GetContent(content); 
+            me.Say(message);
+        }
+
+        public static void SingUP(string name, string login, string password)
+        {
+            Content content = new Content("SignUP", name, ClientAPI.Role, login, password);
             string message = content.GetContent(content);
             me.Say(message);
         }

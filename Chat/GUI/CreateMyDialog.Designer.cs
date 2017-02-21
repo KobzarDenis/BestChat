@@ -40,6 +40,7 @@
             this.txtNameDialog.Size = new System.Drawing.Size(260, 20);
             this.txtNameDialog.TabIndex = 0;
             this.txtNameDialog.Text = "Put your dialog name";
+            this.txtNameDialog.Click += new System.EventHandler(this.txtNameDialog_Click);
             // 
             // btnOK
             // 

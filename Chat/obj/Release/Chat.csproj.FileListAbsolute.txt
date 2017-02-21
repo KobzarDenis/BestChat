@@ -1,0 +1,15 @@
+C:\Users\Professor\Desktop\Chat\Chat\bin\Release\Chat.exe.config
+C:\Users\Professor\Desktop\Chat\Chat\bin\Release\Chat.exe
+C:\Users\Professor\Desktop\Chat\Chat\bin\Release\Chat.pdb
+C:\Users\Professor\Desktop\Chat\Chat\bin\Release\Newtonsoft.Json.dll
+C:\Users\Professor\Desktop\Chat\Chat\bin\Release\Newtonsoft.Json.xml
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.AdminSettings.resources
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.CreateMyDialog.resources
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.Authorization.resources
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.DialogView.resources
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.MainWindow.resources
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.Properties.Resources.resources
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.SignUP_Form.resources
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.csproj.GenerateResource.Cache
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.exe
+C:\Users\Professor\Desktop\Chat\Chat\obj\Release\Chat.pdb

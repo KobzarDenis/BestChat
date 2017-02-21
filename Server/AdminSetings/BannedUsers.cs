@@ -28,10 +28,8 @@ namespace Server
         {
             OnlineUsers.onlineUsers.First(u => u.login == login).Ban = true;
 
-            //connection.Open();
             SQLiteCommand command = new SQLiteCommand("INSERT INTO 'Banned' ('value','time' ) VALUES ('"+login+"','"+time+"');", connection);
             command.ExecuteNonQuery();
-            //connection.Close();
             Read();
             ClientComands.Banned(OnlineUsers.onlineUsers.First(u => u.login == login));
         }
@@ -39,7 +37,6 @@ namespace Server
         public void Read()
         {
             list = new List<string>();
-            //connection.Open();
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'Banned';", connection);
             SQLiteDataReader reader = command.ExecuteReader();
             foreach (DbDataRecord record in reader)
@@ -49,7 +46,6 @@ namespace Server
                 string result =nameUser + "_" + time;
                 list.Add(result);
             }
-            //connection.Close();
         }
 
         public List<string> GetBannedList()
@@ -60,10 +56,8 @@ namespace Server
 
         public void Unban(string login)
         {
-            //connection.Open();
             SQLiteCommand command = new SQLiteCommand("DELETE FROM Banned WHERE value= '" + login + "';", connection);
             SQLiteDataReader reader = command.ExecuteReader();
-            //connection.Close();
             Read();
             if (OnlineUsers.onlineUsers.Any(u=>u.login==login))
             ClientComands.Unbanned(OnlineUsers.onlineUsers.First(u => u.login == login));

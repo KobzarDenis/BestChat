@@ -48,7 +48,6 @@ namespace Chat
                 txtMessage.Clear();
                 newMessage = 0;
             }
-            else txtMessage.Text = "Write your message!";
         }
 
         public void SetMessage(string loginSender, string message)
@@ -68,7 +67,7 @@ namespace Chat
 
         public void SaveDialog(string nameDialog)
         {
-            string writePath = nameDialog + ".txt";
+            string writePath =@"Dialogs/"+ nameDialog + ".txt";
 
             StreamWriter write;
             FileInfo file = new FileInfo(writePath);
@@ -76,13 +75,16 @@ namespace Chat
             foreach (string message in messages)
             {
                 write.WriteLine(message);
+                write.WriteLine(DateTime.Now);
             }
             write.Close();
         }
 
-        private void txtMessage_TextChanged(object sender, EventArgs e)
+        private void txtMessage_Click(object sender, EventArgs e)
         {
             Parent.Text = Parent.Name;
+            txtMessage.Focus();
         }
+
     }
 }

@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Chat
+{
+    public partial class SingUP_Form : Form
+    {
+        public SingUP_Form()
+        {
+            InitializeComponent();
+        }
+
+        private void txtName_Click(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+        }
+
+        private void txtLogin_Click(object sender, EventArgs e)
+        {
+            txtLogin.Text = "";
+        }
+
+        private void txtPass_Click(object sender, EventArgs e)
+        {
+            txtPass.Text = "";
+        }
+
+        private void btnSingUP_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
