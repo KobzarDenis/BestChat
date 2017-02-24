@@ -60,4 +60,3 @@ C:\Users\C#\Desktop\Chat\Chat\obj\Debug\Chat.csproj.GenerateResource.Cache
 C:\Users\C#\Desktop\Chat\Chat\obj\Debug\Chat.SignUP_Form.resources
 C:\Users\Professor\Desktop\Chat\Chat\obj\Debug\Chat.SignUP_Form.resources
 C:\Users\Professor\Desktop\Chat\Chat\bin\Debug\WebSocket4Net.dll
-C:\Users\Professor\Desktop\Chat\Chat\obj\Debug\Chat.csprojResolveAssemblyReference.cache

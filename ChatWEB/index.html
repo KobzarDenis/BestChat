@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Best Chat</title>
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="css/uikit.gradient.min.css"/>
+        <script src="js/uikit.min.js"></script>
+        <script src="js/WSClient.js"></script>
+        <style>
+   			body { 
+   			background: url(images/city.png) repeat-x 0 100% fixed,
+                linear-gradient(to top, #5080b1, #004e8c) fixed;
+    		animation: city 30s linear infinite;
+    -webkit-animation: city 30s linear infinite;
+   }
+   @keyframes city {
+    from { background-position: -1000px 100%, 0 0;}
+    to { background-position: 0 100%, 0 0; }
+   }
+   @-webkit-keyframes city {
+    from { background-position: -1000px 100%, 0 0;}
+    to { background-position: 0 100%, 0 0; }
+   }
+   main {
+    width: 80%;
+    min-height: 800px;
+    display: block;
+    margin: auto;
+    background: rgba(255,255,255,0.6);
+    padding: 20px;}
+  		</style>
+</head>
+<body>
+<nav class="uk-navbar">
+	<div id="Authoriz" class="uk-float-right uk-text-bold ">
+		<a onclick="Login()">Log In</a>
+		<a>|</a>
+		<a onclick="SignUp()">Sign Up</a>
+	</div>
+	<div id="BestChat" class="uk-text-bold">
+		<a id="menuOnlineUsers"">Online user</a>
+		<a>|</a>
+		<a id="menuCreateDialog"">Create dialog</a>
+		<a>|</a>
+		<a id="menuAllDialogs">All dialogs</a>
+		<a>|</a>
+		<a id="menuMyDialogs">My dialogs</a>
+		<a id="menuLogOut" class="uk-float-right">Log Out</a>
+	</div>
+</nav>
+<CENTER>
+
+<div id="divLogIn">
+	<label class="uk-text-bold">Put your login</label><br>
+	<input type="TEXT" id="txtLI_login" class="uk-animation-slide-bottom"><br>
+	<label class="uk-text-bold">Put your password</label><br>
+	<input type="TEXT" id="txtLI_pass" class="uk-animation-slide-bottom"><br><br>
+	<button id="btnLogIn" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Log In</button><br>
+	<p onclick="ForgotPass()" class="uk-text-danger uk-animation-slide-bottom">Forgot your password?</p>
+</div>
+
+<div id="divSignUp">
+	<label class="uk-text-bold">Put your name</label><br>
+	<input type="TEXT" id="txtSUP_name" class="uk-animation-slide-bottom"><br><br>
+	<label class="uk-text-bold">Put your login</label><br>
+	<input type="TEXT" id="txtSUP_login" class="uk-animation-slide-bottom"><br><br>
+	<label class="uk-text-bold">Put your password</label><br>
+	<input type="TEXT" id="txtSUP_pass" class="uk-animation-slide-bottom"><br><br>
+	<button onclick="Show()" id="btnSignUp" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Sign Up</button><br>
+</div>
+
+<div id="divForgotPass">
+	<label class="uk-text-bold">Put your name</label><br>
+	<input type="TEXT" id="txtFP_name" class="uk-animation-slide-bottom"><br><br>
+	<label class="uk-text-bold">Put your login</label><br>
+	<input type="TEXT" id="txtFP_login" class="uk-animation-slide-bottom"><br><br>
+	<label class="uk-text-bold">Put your email</label><br>
+	<input type="TEXT" id="txtFP_email" class="uk-animation-slide-bottom"><br><br>
+	<button onclick="Show()" id="btnSendEmailPass" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Send</button><br>
+</div>
+
+<div id="divChat">
+	<ul id="tabPages" class="uk-tab uk-active uk-float-right uk-contrast" data-uk-tab">
+
+	</ul>
+	<div id="divUsers" class="uk-align-left uk-animation-slide-bottom">
+	<select id="listOfUsers" name="OnLineUsers" size="20">
+    </select><br>
+    <button id="btnInvite" class="uk-button uk-button-primary">Invite</button>
+    <button id="btnPrivate" class="uk-button uk-button-primary">Private</button>
+	</div>
+	<div id="divAllDialogs" class="uk-align-left uk-animation-slide-bottom">
+	<select id="listOfDialogs" name="AllDialogs" size="20">
+    </select><br>
+    <button id="btnToComeIn" class="uk-button uk-button-primary">To Come In</button>
+	</div>
+	<div id="divMyDialogs" class="uk-align-left uk-animation-slide-bottom">
+	<select id="listOfMyDialogs" name="MyDialogs" size="20">
+    </select><br><br>
+    <button id="btnShow_Dialog" class="uk-button uk-button-primary">Show dialog</button>
+	</div>
+	<div id="divCreateDialog" class="uk-align-left uk-animation-slide-bottom">
+	<label class="uk-text-bold">Put your dialog name</label><br>
+	<input id="txtNameOfDialogCreated" type="TEXT" name=""/><br><br>
+	<button id="btnCreateDialog" class="uk-button uk-button-primary">Create</button>
+	</div>
+</div>
+</CENTER>
+</body>
+</html>

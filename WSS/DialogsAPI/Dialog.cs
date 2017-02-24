@@ -27,7 +27,7 @@ namespace WSS.DialogsAPI
 
         public void AddToDialog(string login)
         {
-            dialog.Add(OnlineUsers.onlineUsers.FirstOrDefault(c=>c.login==login));
+            dialog.Add(OnlineUsers.onlineUsers.FirstOrDefault(c=>c.name==login));
         }
     }
 }

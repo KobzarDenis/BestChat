@@ -62,7 +62,9 @@ namespace WSS.ConnectionAPI
 
                 case "PrivatMessage"    :     ClientComands.PrivatMessage(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message);          break;
 
-                    
+                case "ForgotPassword"   :     SendToEmail.ForgotPassword(contentFromClient.Login, contentFromClient.Message);                                         break;
+
+
 
                 default: break;
             }

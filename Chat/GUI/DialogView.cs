@@ -34,7 +34,12 @@ namespace Chat
                 if (privateDialog == false)
                 {
                     if (ClientAPI.Ban == false)
+                    {
                         ServerCommands.SendMessage(Parent.Name, ClientAPI.Login, txtMessage.Text);
+                        string str = "[" + ClientAPI.Login + "] : " + txtMessage.Text;
+                        messages.Add(str);
+                        lbMessages.Items.Add(str);
+                    }
                     else
                         MessageBox.Show("You are banned from this server! Try again latter please!", "Error!");
                 }

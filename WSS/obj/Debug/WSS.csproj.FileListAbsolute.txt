@@ -40,7 +40,6 @@ C:\Users\Professor\Desktop\Chat\WSS\bin\System.Web.Http.WebHost.xml
 C:\Users\Professor\Desktop\Chat\WSS\bin\ru\System.Net.Http.Formatting.resources.dll
 C:\Users\Professor\Desktop\Chat\WSS\bin\ru\System.Web.Http.resources.dll
 C:\Users\Professor\Desktop\Chat\WSS\bin\ru\System.Web.Http.WebHost.resources.dll
-C:\Users\Professor\Desktop\Chat\WSS\obj\Debug\WSS.csprojResolveAssemblyReference.cache
 C:\Users\Professor\Desktop\Chat\WSS\obj\Debug\WSS.dll
 C:\Users\Professor\Desktop\Chat\WSS\obj\Debug\WSS.pdb
 C:\Users\Professor\Desktop\Chat\WSS\bin\EntityFramework.dll

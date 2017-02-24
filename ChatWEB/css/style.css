@@ -1,0 +1,63 @@
+#divLogIn
+{
+	display: block;
+}
+
+#divSignUp
+{
+	display: none;
+}
+
+#divChat
+{
+	display: none;
+}
+
+#BestChat
+{
+	display: none;
+}
+
+#divForgotPass
+{
+	display: none;
+}
+
+#divUsers
+{
+	display: none;
+}
+#divAllDialogs
+{
+	display: none;
+}
+#divMyDialogs
+{
+	display: none;
+}
+
+#divCreateDialog
+{
+	display: none;
+}
+
+#listOfUsers
+{
+	width: 200px;
+	height: 300px;
+	background: #333;
+}
+
+#listOfDialogs
+{
+	width: 200px;
+	height: 300px;
+	background: #333;
+}
+
+#listOfMyDialogs
+{
+	width: 200px;
+	height: 300px;
+	background: #333;
+}

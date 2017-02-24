@@ -59,7 +59,7 @@ namespace WSS.ConnectionAPI
             ListOfDialogs.GetListDialogs().First(d => d.NameDialog == nameDialog).messages.Add(message);
             foreach (Client client in ListOfDialogs.GetListDialogs().First(d =>d.NameDialog == nameDialog).dialog)
             {
-                if (client != null)
+                if (client != null && client.name!=login)
                 {
                         SendMessage(sms, client);
                 }
@@ -78,7 +78,7 @@ namespace WSS.ConnectionAPI
             Content content = new Content("ShowOnlineUsers", "*", "*", "");
             foreach (Client cl in OnlineUsers.onlineUsers)
             {
-                    if(cl.role!="admin" && cl.name!=client.name)
+                    if(cl.role!="admin" && cl.name!=client.name && cl.name!="admin")
                     content.Message += cl.name + ";"; 
             }
             string sms = content.GetContent(content);

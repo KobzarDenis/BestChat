@@ -41,11 +41,22 @@ namespace WSS.ConnectionAPI
             {
                 nameUser = record["name"].ToString();
             }
-            Console.WriteLine(nameUser);
             if (nameUser != "" && nameUser != null)
                 return nameUser;
             else
                 return "Not registred";
+        }
+
+        public string GetData(string login)
+        {
+            string pass = "";
+            SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'RegistredUsers' WHERE login = '" + login+"';", connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            foreach (DbDataRecord record in reader)
+            {
+                pass = record["password"].ToString();
+            }
+            return pass;
         }
 
         private bool FindUser(string name, string login)
