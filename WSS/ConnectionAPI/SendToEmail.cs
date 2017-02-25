@@ -20,6 +20,7 @@ namespace WSS.ConnectionAPI
                 Message.Body = "Ваш пароль : " + pass;
                 Smtp.EnableSsl = true;
                 Smtp.Send(Message);
+
             }
         }
     }
