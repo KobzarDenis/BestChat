@@ -34,6 +34,7 @@
             this.btnSignUP = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ForgotPass = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -92,17 +93,30 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Put your password :";
             // 
+            // ForgotPass
+            // 
+            this.ForgotPass.AutoSize = true;
+            this.ForgotPass.ForeColor = System.Drawing.Color.Red;
+            this.ForgotPass.Location = new System.Drawing.Point(85, 187);
+            this.ForgotPass.Name = "ForgotPass";
+            this.ForgotPass.Size = new System.Drawing.Size(114, 13);
+            this.ForgotPass.TabIndex = 6;
+            this.ForgotPass.Text = "Forgot your password?";
+            this.ForgotPass.Click += new System.EventHandler(this.ForgotPass_Click);
+            // 
             // Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 197);
+            this.ClientSize = new System.Drawing.Size(288, 209);
+            this.Controls.Add(this.ForgotPass);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSignUP);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.btnLogin);
+            this.ForeColor = System.Drawing.Color.Blue;
             this.Name = "Authorization";
             this.Text = "Authorization";
             this.ResumeLayout(false);
@@ -118,6 +132,7 @@
         private System.Windows.Forms.Button btnSignUP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label ForgotPass;
     }
 }
 

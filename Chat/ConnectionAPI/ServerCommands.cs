@@ -92,6 +92,13 @@ namespace Chat
             me.Say(message);
         }
 
+        public static void ForgotPassword(string login, string email)
+        {
+            Content content = new Content("ForgotPassword", login, ClientAPI.Role, "*", email);
+            string message = content.GetContent(content);
+            me.Say(message);
+        }
+
         #region Admin setings
         public static void Ban(string login, string time)
         {

@@ -33,9 +33,9 @@
 <body>
 <nav class="uk-navbar">
 	<div id="Authoriz" class="uk-float-right uk-text-bold ">
-		<a onclick="Login()">Log In</a>
+		<a id="tLogIn">Log In</a>
 		<a>|</a>
-		<a onclick="SignUp()">Sign Up</a>
+		<a id="tSignUp">Sign Up</a>
 	</div>
 	<div id="BestChat" class="uk-text-bold">
 		<a id="menuOnlineUsers"">Online user</a>
@@ -50,33 +50,33 @@
 </nav>
 <CENTER>
 
-<div id="divLogIn">
+<div id="divLogIn" class="uk-container-center uk-animation-slide-bottom">
 	<label class="uk-text-bold">Put your login</label><br>
 	<input type="TEXT" id="txtLI_login" class="uk-animation-slide-bottom"><br>
 	<label class="uk-text-bold">Put your password</label><br>
 	<input type="TEXT" id="txtLI_pass" class="uk-animation-slide-bottom"><br><br>
 	<button id="btnLogIn" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Log In</button><br>
-	<p onclick="ForgotPass()" class="uk-text-danger uk-animation-slide-bottom">Forgot your password?</p>
+	<p id="tForgotPass" class="uk-text-danger uk-animation-slide-bottom">Forgot your password?</p>
 </div>
 
-<div id="divSignUp">
+<div id="divSignUp" class="uk-animation-slide-bottom">
 	<label class="uk-text-bold">Put your name</label><br>
 	<input type="TEXT" id="txtSUP_name" class="uk-animation-slide-bottom"><br><br>
 	<label class="uk-text-bold">Put your login</label><br>
 	<input type="TEXT" id="txtSUP_login" class="uk-animation-slide-bottom"><br><br>
 	<label class="uk-text-bold">Put your password</label><br>
 	<input type="TEXT" id="txtSUP_pass" class="uk-animation-slide-bottom"><br><br>
-	<button onclick="Show()" id="btnSignUp" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Sign Up</button><br>
+	<button id="btnSignUp" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Sign Up</button><br>
 </div>
 
-<div id="divForgotPass">
+<div id="divForgotPass" class="uk-animation-slide-bottom">
 	<label class="uk-text-bold">Put your name</label><br>
 	<input type="TEXT" id="txtFP_name" class="uk-animation-slide-bottom"><br><br>
 	<label class="uk-text-bold">Put your login</label><br>
 	<input type="TEXT" id="txtFP_login" class="uk-animation-slide-bottom"><br><br>
 	<label class="uk-text-bold">Put your email</label><br>
 	<input type="TEXT" id="txtFP_email" class="uk-animation-slide-bottom"><br><br>
-	<button onclick="Show()" id="btnSendEmailPass" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Send</button><br>
+	<button id="btnSendEmailPass" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Send</button><br>
 </div>
 
 <div id="divChat">
@@ -98,6 +98,7 @@
 	<select id="listOfMyDialogs" name="MyDialogs" size="20">
     </select><br><br>
     <button id="btnShow_Dialog" class="uk-button uk-button-primary">Show dialog</button>
+    <button id="btnExit_Dialog" class="uk-button uk-button-primary">Delete dialog</button>
 	</div>
 	<div id="divCreateDialog" class="uk-align-left uk-animation-slide-bottom">
 	<label class="uk-text-bold">Put your dialog name</label><br>

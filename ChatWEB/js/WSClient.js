@@ -31,6 +31,13 @@ var DialogToSend = "nothin";
         var btn_ToComeIn;
         var btn_Private;
         var btn_SendEmailPass;
+        var btn_SignUp;
+        var btn_DeleteDialog;
+
+        var t_ForgotPass;
+        var t_LogIn;
+        var t_SignUp;
+
 window.addEventListener("load", function () {
 
         div_autoriz = document.getElementById("Authoriz");
@@ -60,6 +67,12 @@ window.addEventListener("load", function () {
         btn_ToComeIn = document.getElementById("btnToComeIn");
         btn_Private = document.getElementById("btnPrivate");
         btn_SendEmailPass = document.getElementById("btnSendEmailPass");
+        btn_SignUp = document.getElementById("btnSignUp");
+        btn_DeleteDialog = document.getElementById("btnExit_Dialog");
+
+        t_ForgotPass = document.getElementById("tForgotPass");
+        t_LogIn = document.getElementById("tLogIn");
+        t_SignUp = document.getElementById("tSignUp");
 
     client = new WebSocket(socketUrl);
     client.onopen = onClientOpened;
@@ -107,18 +120,40 @@ window.addEventListener("load", function () {
     menuLogOut.addEventListener("click", function(){
         LogOut(Imya);
         ReturnToMainPage();
+        client = new WebSocket(socketUrl);
+        client.onopen = onClientOpened;
+        client.onmessage = onClientMessage;
+        LogOut_DeleteAll();
     });
 
     btnCreateDialog.addEventListener("click", function(){
+        if(!Status)
+        {
             var txt = document.getElementById("txtNameOfDialogCreated");
             CreateDialog(txt.value, "Public");
             CreateDialogServer(Imya,txt.value);
             div_CreateDialog.style.display = 'none';
             txt.value = "";
+        }
+        else
+        {
+            alert("You are banned from this server =(");
+        }
     });
 
     btnShow_Dialog.addEventListener("click", function(){
         ShowDialog();
+    });
+
+    btn_DeleteDialog.addEventListener("click", function(){
+        var List = document.getElementById("listOfMyDialogs");
+        var n = List.options.selectedIndex;
+        var txt = List.options[n].text;
+        CloseDialog(txt, Imya);
+        var dialog = "dialogView"+txt;
+        var el = document.getElementById(dialog);
+        el.parentNode.removeChild(el);
+        List.remove(List.selectedIndex);
     });
 
     btn_ToComeIn.addEventListener("click", function(){
@@ -137,12 +172,40 @@ window.addEventListener("load", function () {
     btn_SendEmailPass.addEventListener("click", function(){
         var tLogin = document.getElementById("txtFP_login");
         var tMail = document.getElementById("txtFP_email");
-        ForgotPassword(tLogin.value, tMail.value);
+        if(tMail.value!="" || tLogin.value!="")
+        {
+            ForgotPassword(tLogin.value, tMail.value);
+            tLogin.value = "";
+            tMail.value = "";
+            ReturnToMainPage();
+            alert("Check your mail, we send your password to you!");
+        }
     });
 
-    div_forgotpassword.addEventListener("click", function(){
+    btn_SignUp.addEventListener("click", function(){
+        var tName = document.getElementById("txtSUP_name");
+        var tLogin = document.getElementById("txtSUP_login");
+        var tPass = document.getElementById("txtSUP_pass");
+        SignUpOnServer(tName.value, tLogin.value, tPass.value);
+        tName.value = "";
+        tLogin.value = "";
+        tPass.value = "";
+        ReturnToMainPage();
+        alert("Registration succces!");
+    });
+
+    t_ForgotPass.addEventListener("click", function(){
         ForgotPass();
     });
+
+    t_LogIn.addEventListener("click", function(){
+        ReturnToMainPage();
+    });
+
+    t_SignUp.addEventListener("click", function(){
+        Show_SignUp();
+    });
+
 });
 
 function onClientOpened(){
@@ -164,7 +227,7 @@ function onClientMessage(event)
      case "SendMessage"     : TakeMessage(content.Login,content.NameDialog,content.Message); Push("You have a new message in dialog "+content.NameDialog); break;
      case "ShowOnlineUsers" : OnlineUsers(content.Message);                                                                              break;
      case "ShowAllDialogs"  : AllDialogs(content.Message);                                                                               break;
-     case "PrivatMessage"   : CreateDialog(content.NameDialog, "Privat"); TakeMessage(content.NameDialog, content.Message);                                     break;
+     case "PrivatMessage"   : PrivateDialog(content.NameDialog, content.Message);                                     break;
      case "Banned"          : BanOrNot("True");                                                                                          break;
      case "Unbaned"         : BanOrNot("False");                                                                                         break;
     }
@@ -244,11 +307,21 @@ function ReturnToMainPage()
 
 function ForgotPass()
 {
-        div_autoriz.style.display = 'none';
+        div_autoriz.style.display = 'block';
         div_bestchat.style.display = 'none';
         div_chat.style.display = 'none';
         div_singup.style.display = 'none';
         div_forgotpassword.style.display = 'block';
+        div_login.style.display = 'none';
+}
+
+function Show_SignUp()
+{
+        div_autoriz.style.display = 'block';
+        div_bestchat.style.display = 'none';
+        div_chat.style.display = 'none';
+        div_singup.style.display = 'block';
+        div_forgotpassword.style.display = 'none';
         div_login.style.display = 'none';
 }
 
@@ -258,9 +331,10 @@ function ShowDialog()
     var txt = document.getElementById("listOfMyDialogs").options[n].text;
     var dialog = "dialogView"+txt;
     var tabPage = document.getElementById("tabPages");
-    if (tabPage.hasChildNodes()) {
+    if (tabPage.hasChildNodes()) 
+    {
         var children = tabPage.childNodes;
-        }
+    }
         for (var i = 0; i < children.length; i++) 
         {
             if(children[i].id == dialog)
@@ -274,6 +348,24 @@ function ShowDialog()
         }
         ActiveDialog = dialog;
         DialogToSend = txt;
+}
+
+function LogOut_DeleteAll()
+{
+    var tabPage = document.getElementById("tabPages");
+    if (tabPage.hasChildNodes()) 
+    {
+        var children = tabPage.childNodes;
+    }
+        for (var i = 0; i < children.length; i++) 
+        {
+           var el = document.getElementById(children[i].id);
+           el.parentNode.removeChild(el);
+        }
+    document.getElementById("listOfDialogs").options.length = 0;
+    document.getElementById("listOfUsers").options.length = 0;
+    document.getElementById("listOfMyDialogs").options.length = 0;
+
 }
 
 function AllDialogs(dialogs)
@@ -310,6 +402,26 @@ function InviteInDialog()
 function Push(message) 
 {
     alert(message);
+}
+
+function PrivateDialog(nameDialog, message)
+{
+    var dialog = "dialogView"+nameDialog;
+    var tabPage = document.getElementById("tabPages");
+    if (tabPage.hasChildNodes()) {
+        var children = tabPage.childNodes;
+        }
+        for (var i = 0; i < children.length; i++)
+        {
+            if(children[i].id == dialog)
+            {
+                TakeMessage(nameDialog,nameDialog,message);
+                Push("You have a new message from "+ nameDialog);
+                return 0;
+            }
+        }
+        CreateDialog(nameDialog, "Private");
+        TakeMessage(nameDialog, nameDialog, message);
 }
 
 function CreateDialog(nameDialog, priv)
@@ -362,7 +474,7 @@ function MessageMaker(messageBox, viewBox, isPrivate)
     }
 }
 
-function SignUp(name, login, password)
+function SignUpOnServer(name, login, password)
 {
     client.send("{'Action': 'SignUP', 'Login':'" + name + "' , 'Role': 'User', 'NameDialog':'" + login + "', 'Message': '" + password + "'}");
 }
@@ -382,7 +494,7 @@ function SendMessageToDialog( dialog, login, sms)
     if(!Status)
         client.send("{'Action': 'SendMessage', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'" + dialog + "', 'Message': '"+sms+"'}");
     else
-        alert("You arebanned from this server");
+        alert("You are banned from this server =(");
 }
 
 function CloseDialog(dialog, login)

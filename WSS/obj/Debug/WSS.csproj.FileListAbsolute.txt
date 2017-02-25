@@ -50,3 +50,4 @@ C:\Users\Professor\Desktop\Chat\WSS\bin\System.Data.SQLite.Linq.dll
 C:\Users\Professor\Desktop\Chat\WSS\bin\EntityFramework.xml
 C:\Users\Professor\Desktop\Chat\WSS\bin\EntityFramework.SqlServer.xml
 C:\Users\Professor\Desktop\Chat\WSS\bin\System.Data.SQLite.xml
+C:\Users\Professor\Desktop\Chat\WSS\obj\Debug\WSS.csprojResolveAssemblyReference.cache

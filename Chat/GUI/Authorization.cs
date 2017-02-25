@@ -61,5 +61,10 @@ namespace Chat
         {
             new SignUP_Form().Show();
         }
+
+        private void ForgotPass_Click(object sender, EventArgs e)
+        {
+            new ForgotPassword().Show();
+        }
     }
 }
