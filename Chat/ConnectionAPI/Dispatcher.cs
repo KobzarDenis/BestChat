@@ -41,7 +41,7 @@ namespace Chat
             switch(contentFromServer.Action)
             {
                 case "Authorization"   :  if (contentFromServer.Message == "True") ClientAPI.Ban = true;
-                                          authorization.Authorized(contentFromServer.NameDialog);                                                               break;
+                                          authorization.Authorized(contentFromServer.Name);                                                                     break;
 
                 case "SignUP"          :  if (contentFromServer.Message == "Success") signUP_Form.Success(true);
                                           else if (contentFromServer.Message == "No success") signUP_Form.Success(false);                                       break;
@@ -69,6 +69,8 @@ namespace Chat
 
                 case "Banned"          :  ClientAPI.Ban = true;                                                                                                 break;
                 case "Unbaned"         :  ClientAPI.Ban = false;                                                                                                break;
+
+                case "ChangePassword"  :  MessageBox.Show("Your password has been changed" , "Succes");                                                         break;
 
                 default: break;
             }

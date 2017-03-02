@@ -10,7 +10,9 @@ namespace WSS.ConnectionAPI
     public class Content
     {
         public string Action { get; set; }
+        public string Name { get; set; }
         public string Login { get; set; }
+        public string Password { get; set; }
         public string Role { get; set; }
         public string NameDialog { get; set; }
         public string Message { get; set; }
@@ -20,10 +22,12 @@ namespace WSS.ConnectionAPI
 
         }
 
-        public Content(string action, string login, string nameDialog, string message)
+        public Content(string action, string name, string login, string password, string nameDialog, string message)
         {
             this.Action = action;
+            this.Name = name;
             this.Login = login;
+            this.Password = password;
             this.Role = "";
             this.NameDialog = nameDialog;
             this.Message = message;

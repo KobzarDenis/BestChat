@@ -19,7 +19,7 @@ namespace WSS.ConnectionAPI
         public static void Authorization(string login, string password, Client client)
         {
             client.name = registredUsers.Read(login, password);
-            Content content = new Content("Authorization", login, client.name, banedUsers.FindUsers(login).ToString());
+            Content content = new Content("Authorization", client.name, login,"*", "*", banedUsers.FindUsers(login).ToString());
             string sms = content.GetContent(content);
             SendMessage(sms, OnlineUsers.onlineUsers.First(c => c.login == login));
             if (client.name == "" || client.name == "Not registred")
@@ -30,13 +30,13 @@ namespace WSS.ConnectionAPI
         {
             if (registredUsers.Create(name, login, password) == true)
             {
-                Content content = new Content("SignUP", "*", "*", "Success");
+                Content content = new Content("SignUP", "*", "*", "*", "*", "Success");
                 string sms = content.GetContent(content);
                 SendMessage(sms, client);
             }
             else
             {
-                Content content = new Content("SignUP", "*", "*", "No success");
+                Content content = new Content("SignUP", "*", "*","*", "*", "No success");
                 string sms = content.GetContent(content);
                 SendMessage(sms, client);
             }
@@ -44,7 +44,7 @@ namespace WSS.ConnectionAPI
 
         public static void InviteToDialog(string login, string nameDialog)
         {
-            Content content = new Content("Invite", login, nameDialog, "*");
+            Content content = new Content("Invite", "*", login, "*", nameDialog, "*");
             string sms = content.GetContent(content);
 
             ListOfDialogs.GetListDialogs().First(d => d.NameDialog == nameDialog).dialog.Add(OnlineUsers.onlineUsers.First(c => c.name == login));
@@ -53,7 +53,7 @@ namespace WSS.ConnectionAPI
 
         public static void NewMessage(string nameDialog, string message, string login)
         {
-            Content content = new Content("SendMessage", login, nameDialog, message);
+            Content content = new Content("SendMessage", "*", login,"*", nameDialog, message);
             string sms = content.GetContent(content);
 
             ListOfDialogs.GetListDialogs().First(d => d.NameDialog == nameDialog).messages.Add(message);
@@ -68,14 +68,14 @@ namespace WSS.ConnectionAPI
 
         public static void PrivatMessage(string senderLogin, string takerLogin, string message)
         {
-            Content content = new Content("PrivatMessage", senderLogin, senderLogin, message);
+            Content content = new Content("PrivatMessage","*", senderLogin,"*", senderLogin, message);
             string sms = content.GetContent(content);
             SendMessage(sms, OnlineUsers.onlineUsers.First(u => u.name == takerLogin));
         }
 
         public static void ShowOnlineUsers(Client client)
         {
-            Content content = new Content("ShowOnlineUsers", "*", "*", "");
+            Content content = new Content("ShowOnlineUsers", "*", "*", "*", "*", "");
             foreach (Client cl in OnlineUsers.onlineUsers)
             {
                     if(cl.role!="admin" && cl.name!=client.name && cl.name!="admin")
@@ -87,7 +87,7 @@ namespace WSS.ConnectionAPI
 
         public static void ShowBannedUsers(Client client)
         {
-            Content content = new Content("ShowBannedUsers", "*", "*", "");
+            Content content = new Content("ShowBannedUsers", "*", "*", "*", "*", "");
             foreach (string users in banedUsers.GetBannedList())
             {
                     var parts = users.Split('_');
@@ -99,21 +99,31 @@ namespace WSS.ConnectionAPI
 
         public static void Banned(Client client)
         {
-            Content content = new Content("Banned", "Server", "*", "*");
+            Content content = new Content("Banned", "Server", "*", "*", "*", "*");
             string sms = content.GetContent(content);
             SendMessage(sms, client);
         }
 
         public static void Unbanned(Client client)
         {
-            Content content = new Content("Unbaned", "Server", "*", "*");
+            Content content = new Content("Unbaned", "Server", "*", "*", "*", "*");
             string sms = content.GetContent(content);
             SendMessage(sms, client);
         }
 
+        public static void ChangePassword(string login, string newPass,Client client)
+        {
+            if (registredUsers.Update(login, newPass))
+            {
+                Content content = new Content("ChangePassword", "Server", "*", "*", "*", "*");
+                string sms = content.GetContent(content);
+                SendMessage(sms, client);
+            }
+        }
+
         public static void ShowAllUsersForAdmin(Client client)
         {
-            Content content = new Content("ShowAllUsersForAdmin", "*", "*", "");
+            Content content = new Content("ShowAllUsersForAdmin", "*", "*", "", "*", "*");
             foreach (Client cl in OnlineUsers.onlineUsers)
             {
                 if (cl.role != "admin" && cl.login != client.login)
@@ -125,7 +135,7 @@ namespace WSS.ConnectionAPI
 
         public static void ShowAllDialogs(Client client)
         {
-            Content content = new Content("ShowAllDialogs", "*", "*", "");
+            Content content = new Content("ShowAllDialogs", "*", "*", "", "*", "*");
             foreach (Dialog dialog in ListOfDialogs.GetListDialogs())
             {
                 if(dialog.PrivatDialog==false)

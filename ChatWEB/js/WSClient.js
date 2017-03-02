@@ -14,12 +14,14 @@ var DialogToSend = "nothin";
         var div_AllDialogs;
         var div_MyDialogs;
         var div_CreateDialog;
+        var div_ChangePass;
 
         var menuOnlineUsers;
         var menuCreateDialog;
         var menuAllDialogs;
         var menuMyDialogs;
         var menuLogOut;
+        var menuChangePassword;
 
         var listOfUsers;
         var listOfDialogs;
@@ -33,6 +35,7 @@ var DialogToSend = "nothin";
         var btn_SendEmailPass;
         var btn_SignUp;
         var btn_DeleteDialog;
+        var btn_ChangePass;
 
         var t_ForgotPass;
         var t_LogIn;
@@ -50,12 +53,15 @@ window.addEventListener("load", function () {
         div_MyDialogs = document.getElementById("divMyDialogs");
         div_Users = document.getElementById("divUsers");
         div_CreateDialog = document.getElementById("divCreateDialog");
+        div_ChangePass = document.getElementById("divChangePass");
+
 
         menuOnlineUsers = document.getElementById("menuOnlineUsers");
         menuCreateDialog = document.getElementById("menuCreateDialog");
         menuAllDialogs = document.getElementById("menuAllDialogs");
         menuMyDialogs = document.getElementById("menuMyDialogs");
         menuLogOut = document.getElementById("menuLogOut");
+        menuChangePassword = document.getElementById("menuChangePassword");
 
         listOfUsers = document.getElementById("listOfUsers");
         listOfDialogs = document.getElementById("listOfDialogs");
@@ -69,6 +75,7 @@ window.addEventListener("load", function () {
         btn_SendEmailPass = document.getElementById("btnSendEmailPass");
         btn_SignUp = document.getElementById("btnSignUp");
         btn_DeleteDialog = document.getElementById("btnExit_Dialog");
+        btn_ChangePass = document.getElementById("btnChangePass");
 
         t_ForgotPass = document.getElementById("tForgotPass");
         t_LogIn = document.getElementById("tLogIn");
@@ -126,6 +133,10 @@ window.addEventListener("load", function () {
         LogOut_DeleteAll();
     });
 
+    menuChangePassword.addEventListener("click", function(){
+        div_ChangePass.style.display = 'block';
+    });
+
     btnCreateDialog.addEventListener("click", function(){
         if(!Status)
         {
@@ -167,6 +178,15 @@ window.addEventListener("load", function () {
         var n = document.getElementById("listOfUsers").options.selectedIndex;
         var txt = document.getElementById("listOfUsers").options[n].text;
         CreateDialog(txt, "Private");
+    });
+
+    btn_ChangePass.addEventListener("click", function(){
+        var txrOldPass = document.getElementById("txtCP_OldPass");
+        var txtNewPass = document.getElementById("txtCP_NewPass");
+        ChangePassword(Imya, txtNewPass.value);
+        div_ChangePass.style.display = 'none';
+        txrOldPass.value = "";
+        txtNewPass.value = "";
     });
 
     btn_SendEmailPass.addEventListener("click", function(){
@@ -221,15 +241,16 @@ function onClientMessage(event)
 
     switch(content.Action)
     {
-     case "Authorization"   : if (content.Login != "Not registred") { GoChat("Authorization"); Imya = content.NameDialog; } BanOrNot(content.Message);              break;
-     case "SignUP"          : break;
-     case "Invite"          : InviteToMe(content.NameDialog);                                                                            break;
-     case "SendMessage"     : TakeMessage(content.Login,content.NameDialog,content.Message); Push("You have a new message in dialog "+content.NameDialog); break;
-     case "ShowOnlineUsers" : OnlineUsers(content.Message);                                                                              break;
-     case "ShowAllDialogs"  : AllDialogs(content.Message);                                                                               break;
-     case "PrivatMessage"   : PrivateDialog(content.NameDialog, content.Message);                                     break;
-     case "Banned"          : BanOrNot("True");                                                                                          break;
-     case "Unbaned"         : BanOrNot("False");                                                                                         break;
+        case "Authorization"   : if (content.Login != "Not registred") { GoChat("Authorization"); Imya = content.NameDialog; } BanOrNot(content.Message);              break;
+        case "SignUP"          : break;
+        case "Invite"          : InviteToMe(content.NameDialog);                                                                                                       break;
+        case "SendMessage"     : TakeMessage(content.Login,content.NameDialog,content.Message); Push("You have a new message in dialog "+content.NameDialog);          break;
+        case "ShowOnlineUsers" : OnlineUsers(content.Message);                                                                                                         break;
+        case "ShowAllDialogs"  : AllDialogs(content.Message);                                                                                                          break;
+        case "PrivatMessage"   : PrivateDialog(content.NameDialog, content.Message);                                                                                   break;
+        case "Banned"          : BanOrNot("True");                                                                                                                     break;
+        case "Unbaned"         : BanOrNot("False");                                                                                                                    break;
+        case "ChangePassword"  : alert("Your password has been changed" , "Succes");                                                                                   break;
     }
 }
 
@@ -530,4 +551,9 @@ function LogOut(login)
 function ForgotPassword(login, email)
 {
     client.send("{'Action': 'ForgotPassword', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'*', 'Message': '"+email+"'}");
+}
+
+function ChangePassword(login ,newPass)
+{
+    client.send("{'Action': 'ChangePassword', 'Login':'" + login + "' , 'Role': 'User', 'NameDialog':'*', 'Message': '"+newPass+"'}");
 }

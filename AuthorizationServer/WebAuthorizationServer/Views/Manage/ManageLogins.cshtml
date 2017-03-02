@@ -1,0 +1,25 @@
+﻿@model WebAuthorizationServer.Models.ManageLoginsViewModel
+@using Microsoft.Owin.Security
+@{
+    ViewBag.Title = "Управление внешними именами входа";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+   
+            using (Html.BeginForm("LinkLogin", "Manage"))
+            {
+                @Html.AntiForgeryToken()
+                <div id="socialLoginList">
+                <p>
+                    @foreach (AuthenticationDescription p in Model.OtherLogins)
+                    {
+                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Войти с помощью учетной записи @p.Caption">@p.AuthenticationType</button>
+                    }
+                </p>
+                </div>
+            }
+ }

@@ -35,6 +35,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ForgotPass = new System.Windows.Forms.Label();
+            this.btnGoogle = new System.Windows.Forms.Button();
+            this.btnFaceBook = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -104,11 +106,34 @@
             this.ForgotPass.Text = "Forgot your password?";
             this.ForgotPass.Click += new System.EventHandler(this.ForgotPass_Click);
             // 
+            // btnGoogle
+            // 
+            this.btnGoogle.ForeColor = System.Drawing.Color.Red;
+            this.btnGoogle.Location = new System.Drawing.Point(268, 77);
+            this.btnGoogle.Name = "btnGoogle";
+            this.btnGoogle.Size = new System.Drawing.Size(75, 23);
+            this.btnGoogle.TabIndex = 7;
+            this.btnGoogle.Text = "Google";
+            this.btnGoogle.UseVisualStyleBackColor = true;
+            this.btnGoogle.Click += new System.EventHandler(this.btnGoogle_Click);
+            // 
+            // btnFaceBook
+            // 
+            this.btnFaceBook.Location = new System.Drawing.Point(268, 106);
+            this.btnFaceBook.Name = "btnFaceBook";
+            this.btnFaceBook.Size = new System.Drawing.Size(75, 23);
+            this.btnFaceBook.TabIndex = 8;
+            this.btnFaceBook.Text = "FaceBook";
+            this.btnFaceBook.UseVisualStyleBackColor = true;
+            this.btnFaceBook.Click += new System.EventHandler(this.btnFaceBook_Click);
+            // 
             // Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 209);
+            this.ClientSize = new System.Drawing.Size(370, 209);
+            this.Controls.Add(this.btnFaceBook);
+            this.Controls.Add(this.btnGoogle);
             this.Controls.Add(this.ForgotPass);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -133,6 +158,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label ForgotPass;
+        private System.Windows.Forms.Button btnGoogle;
+        private System.Windows.Forms.Button btnFaceBook;
     }
 }
 

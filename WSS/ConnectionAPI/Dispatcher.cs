@@ -31,9 +31,9 @@ namespace WSS.ConnectionAPI
             {
                 case "Authorization"    :     client.login = contentFromClient.Login;
                                               client.role = contentFromClient.Role;
-                                              ClientComands.Authorization(contentFromClient.Login, contentFromClient.NameDialog, client);                             break;
+                                              AuthorizationServerCommand.Authorization(contentFromClient.Login, contentFromClient.Password, client);                             break;
 
-                case "SignUP":                ClientComands.SignUP(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message, client);         break;
+                case "SignUP":                  AuthorizationServerCommand.SignUP(contentFromClient.Name,contentFromClient.Login, contentFromClient.Password, client);         break;
 
                 case "Invite"           :     ClientComands.InviteToDialog(contentFromClient.Login, contentFromClient.NameDialog);                                    break;
 
@@ -62,7 +62,9 @@ namespace WSS.ConnectionAPI
 
                 case "PrivatMessage"    :     ClientComands.PrivatMessage(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message);          break;
 
-                case "ForgotPassword"   :     SendToEmail.ForgotPassword(contentFromClient.Login, contentFromClient.Message);                                         break;
+                case "ForgotPassword"   :       AuthorizationServerCommand.ForgotPassword(contentFromClient.Login,contentFromClient.Message, client);                                          break;
+
+                case "ChangePassword"   :       AuthorizationServerCommand.ChangePassword(contentFromClient.Login, contentFromClient.Message, client);                               break;
 
 
 

@@ -41,6 +41,11 @@
 	display: none;
 }
 
+#divChangePass
+{
+	display: none;
+}
+
 #listOfUsers
 {
 	width: 200px;

@@ -122,16 +122,22 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="saveDialogToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="saveDialogToolStripMenuItem.Text" xml:space="preserve">
     <value>Save dialog</value>
   </data>
+  <data name="changePasswordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="changePasswordToolStripMenuItem.Text" xml:space="preserve">
+    <value>Change password</value>
+  </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 6</value>
+    <value>165, 6</value>
   </data>
   <data name="logOutExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="logOutExitToolStripMenuItem.Text" xml:space="preserve">
     <value>Log Out/Exit</value>
@@ -142,35 +148,11 @@
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="createDialogToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
-  <data name="createDialogToolStripMenuItem.Text" xml:space="preserve">
-    <value>CreateDialog</value>
-  </data>
-  <data name="myDialogsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
-  <data name="myDialogsToolStripMenuItem.Text" xml:space="preserve">
-    <value>My dialogs</value>
-  </data>
-  <data name="allDialogsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
-  </data>
-  <data name="allDialogsToolStripMenuItem.Text" xml:space="preserve">
-    <value>All dialogs</value>
-  </data>
   <data name="dialogsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 20</value>
   </data>
   <data name="dialogsToolStripMenuItem.Text" xml:space="preserve">
     <value>Dialogs</value>
-  </data>
-  <data name="showOnlineUsersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
-  </data>
-  <data name="showOnlineUsersToolStripMenuItem.Text" xml:space="preserve">
-    <value>Show online users</value>
   </data>
   <data name="usersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 20</value>
@@ -203,8 +185,32 @@
   <data name="&gt;&gt;ChatMenu.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="createDialogToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="createDialogToolStripMenuItem.Text" xml:space="preserve">
+    <value>CreateDialog</value>
+  </data>
+  <data name="myDialogsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="myDialogsToolStripMenuItem.Text" xml:space="preserve">
+    <value>My dialogs</value>
+  </data>
+  <data name="allDialogsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="allDialogsToolStripMenuItem.Text" xml:space="preserve">
+    <value>All dialogs</value>
+  </data>
+  <data name="showOnlineUsersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 22</value>
+  </data>
+  <data name="showOnlineUsersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Show online users</value>
+  </data>
   <data name="lbUsers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 49</value>
+    <value>15, 44</value>
   </data>
   <data name="lbUsers.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 134</value>
@@ -543,6 +549,12 @@
     <value>showOnlineUsersToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;showOnlineUsersToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;changePasswordToolStripMenuItem.Name" xml:space="preserve">
+    <value>changePasswordToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;changePasswordToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

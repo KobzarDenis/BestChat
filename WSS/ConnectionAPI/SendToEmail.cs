@@ -5,10 +5,8 @@ namespace WSS.ConnectionAPI
 {
     public class SendToEmail
     {
-        public static void ForgotPassword(string login, string mail)
+        public static void ForgotPassword(string pass, string mail)
         {
-            RegistredUsers registredUsers = new RegistredUsers();
-            string pass = registredUsers.GetData(login);
             if (pass != "" && pass != null)
             {
                 SmtpClient Smtp = new SmtpClient("smtp.gmail.com", 587);

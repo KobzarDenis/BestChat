@@ -51,6 +51,7 @@
             this.btnPrivateMessage = new System.Windows.Forms.Button();
             this.btnAdminSettings = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ChatMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +68,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveDialogToolStripMenuItem,
+            this.changePasswordToolStripMenuItem,
             this.toolStripSeparator1,
             this.logOutExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -197,6 +199,12 @@
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            resources.ApplyResources(this.changePasswordToolStripMenuItem, "changePasswordToolStripMenuItem");
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.MenuHandler);
+            // 
             // MainWindow
             // 
             resources.ApplyResources(this, "$this");
@@ -246,5 +254,6 @@
         private System.Windows.Forms.Button btnPrivateMessage;
         private System.Windows.Forms.Button btnAdminSettings;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
     }
 }

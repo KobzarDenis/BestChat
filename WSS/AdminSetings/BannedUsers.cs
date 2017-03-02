@@ -9,7 +9,7 @@ using System.Web;
 
 namespace WSS.AdminSettings
 {
-    class BannedUsers
+    public class BannedUsers
     {
         private List<string> list;
 

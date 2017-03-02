@@ -139,12 +139,15 @@
   <ItemGroup>
     <Compile Include="AdminSetings\BannedUsers.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AuthorizationClient.cs" />
+    <Compile Include="AuthorizationServerCommand.cs" />
     <Compile Include="ConnectionAPI\Client.cs" />
     <Compile Include="ConnectionAPI\ClientComands.cs" />
     <Compile Include="ConnectionAPI\Content.cs" />
     <Compile Include="ConnectionAPI\Dispatcher.cs" />
     <Compile Include="ConnectionAPI\RegistredUsers.cs" />
     <Compile Include="ConnectionAPI\SendToEmail.cs" />
+    <Compile Include="ContentFromAuthorizationServer.cs" />
     <Compile Include="DialogsAPI\Dialog.cs" />
     <Compile Include="DialogsAPI\ListOfDialogs.cs" />
     <Compile Include="DialogsAPI\OnlineUsers.cs" />

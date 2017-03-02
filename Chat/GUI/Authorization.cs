@@ -66,5 +66,19 @@ namespace Chat
         {
             new ForgotPassword().Show();
         }
+
+        private void btnGoogle_Click(object sender, EventArgs e)
+        {
+            ExternalAuth auth = new ExternalAuth();
+            string[] info = auth.Google_Auth();
+            string name = auth.Tr(info[0]);
+        }
+
+        private void btnFaceBook_Click(object sender, EventArgs e)
+        {
+            ExternalAuth auth = new ExternalAuth();
+            string[] info = auth.Facebook_Auth();
+            string name = auth.Tr(info[0]);
+        }
     }
 }

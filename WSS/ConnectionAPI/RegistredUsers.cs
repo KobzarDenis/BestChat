@@ -47,6 +47,13 @@ namespace WSS.ConnectionAPI
                 return "Not registred";
         }
 
+        public bool Update(string name, string newPass)
+        {
+            SQLiteCommand command = new SQLiteCommand("UPDATE 'RegistredUsers' SET password='" + newPass + "' WHERE name='" + name + "';", connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            return true;
+        }
+
         public string GetData(string login)
         {
             string pass = "";

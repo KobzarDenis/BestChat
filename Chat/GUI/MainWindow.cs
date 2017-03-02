@@ -17,6 +17,8 @@ namespace Chat
         AdminSettings adminSetings;
         Authorization authorization;
 
+        bool LogOut = false;
+
         public static int newMessage = 1;
 
         public MainWindow(Authorization a)
@@ -48,8 +50,9 @@ namespace Chat
                 case "My dialogs"        : ShowMyDialogs();                                                                                                        break;
                 case "All dialogs"       : RequestShowAllDialogs();                                                                                                break;
                 case "Show online users" : RequestShowOnlineUsers();                                                                                               break;
-                case "Log Out/Exit"      : ServerCommands.LogOut(ClientAPI.Login); Close();   authorization.Show();                                                break;
+                case "Log Out/Exit"      : ServerCommands.LogOut(ClientAPI.Login); Close(); LogOut = true;   authorization.Show();                                               break;
                 case "Save dialog"       : collectionOfDialogsView.GetSelectedDialogView(tabC_Dialogs.SelectedTab.Text).SaveDialog(tabC_Dialogs.SelectedTab.Text); break;
+                case "Change password"   : new ChangePassword().Show();                                                                                            break;
 
                 default: break;
             }
@@ -204,7 +207,10 @@ namespace Chat
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            authorization.Close();
+            if (!LogOut)
+            {
+                authorization.Close();
+            }
         }
     }
 }
