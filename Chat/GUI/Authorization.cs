@@ -71,7 +71,9 @@ namespace Chat
         {
             ExternalAuth auth = new ExternalAuth();
             string[] info = auth.Google_Auth();
-            string name = auth.Tr(info[0]);
+            string name  = info[0];
+            string login = info[1];
+            ServerCommands.AuthorizationWithGoogle(name,login );
         }
 
         private void btnFaceBook_Click(object sender, EventArgs e)
@@ -79,6 +81,8 @@ namespace Chat
             ExternalAuth auth = new ExternalAuth();
             string[] info = auth.Facebook_Auth();
             string name = auth.Tr(info[0]);
+            string login = auth.Tr(info[1]);
+            ServerCommands.AuthorizationWithFaceBook(name, login);
         }
     }
 }

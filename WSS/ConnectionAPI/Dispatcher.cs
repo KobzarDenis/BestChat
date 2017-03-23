@@ -27,50 +27,70 @@ namespace WSS.ConnectionAPI
             contentFromClient = new Content();
             contentFromClient = contentFromClient.SetContent(content);
 
-            switch (contentFromClient.Action)
+            try
             {
-                case "Authorization"    :     client.login = contentFromClient.Login;
-                                              client.role = contentFromClient.Role;
-                                              AuthorizationServerCommand.Authorization(contentFromClient.Login, contentFromClient.Password, client);                             break;
+                switch (contentFromClient.Action)
+                {
+                    case "Authorization":
+                        client.login = contentFromClient.Login;
+                        client.role = contentFromClient.Role;
+                        AuthorizationServerCommand.Authorization(contentFromClient.Login, contentFromClient.Password, client); break;
 
-                case "SignUP":                  AuthorizationServerCommand.SignUP(contentFromClient.Name,contentFromClient.Login, contentFromClient.Password, client);         break;
+                    case "Google":
+                        client.login = contentFromClient.Login;
+                        client.role = contentFromClient.Role;
+                        client.name = contentFromClient.Name;
+                        ClientComands.AuthorizationWithOtherService(client); break;
 
-                case "Invite"           :     ClientComands.InviteToDialog(contentFromClient.Login, contentFromClient.NameDialog);                                    break;
+                    case "FaceBook":
+                        client.login = contentFromClient.Login;
+                        client.role = contentFromClient.Role;
+                        client.name = contentFromClient.Name;
+                        ClientComands.AuthorizationWithOtherService(client); break;
 
-                case "SendMessage"      :     ClientComands.NewMessage(contentFromClient.NameDialog, contentFromClient.Message, contentFromClient.Login);
-                                              HistoryMessagesInDialogs.SaveHistory(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message); break;
+                    case "SignUP": AuthorizationServerCommand.SignUP(contentFromClient.Name, contentFromClient.Login, contentFromClient.Password, client); break;
 
-                case "CloseDialog"      :     ListOfDialogs.ExitDialog(contentFromClient.Login, contentFromClient.NameDialog);                                        break;
+                    case "Invite": ClientComands.InviteToDialog(contentFromClient.Login, contentFromClient.NameDialog); break;
 
-                case "ToComeIn"         :     ListOfDialogs.ToComeIn(contentFromClient.Login, contentFromClient.NameDialog);                                          break;   
-                                                                                
-                case "ShowAllDialogs"   :     ClientComands.ShowAllDialogs(client);                                                                                   break;
+                    case "SendMessage":
+                        ClientComands.NewMessage(contentFromClient.NameDialog, contentFromClient.Message, contentFromClient.Login);
+                        HistoryMessagesInDialogs.SaveHistory(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message); break;
 
-                case "ShowOnlineUsers"  :     ClientComands.ShowOnlineUsers(client);                                                                                  break;
+                    case "CloseDialog": ListOfDialogs.ExitDialog(contentFromClient.Login, contentFromClient.NameDialog); break;
 
-                case "CreateDialog"     :     ListOfDialogs.AddDialogToList(contentFromClient.NameDialog, client);                                                    break;
+                    case "ToComeIn": ListOfDialogs.ToComeIn(contentFromClient.Login, contentFromClient.NameDialog); break;
 
-                case "LogOut"           :     ClientComands.LogOut(contentFromClient.Login);                                                                          break;
+                    case "ShowAllDialogs": ClientComands.ShowAllDialogs(client); break;
 
-                case "ShowBannedUsers"  :     if(contentFromClient.Login=="admin") ClientComands.ShowBannedUsers(client);                                             break;
+                    case "ShowOnlineUsers": ClientComands.ShowOnlineUsers(client); break;
 
-                case "ShowAllUsersForAdmin":  ClientComands.ShowAllUsersForAdmin(client);                                                                             break;
+                    case "CreateDialog": ListOfDialogs.AddDialogToList(contentFromClient.NameDialog, client); break;
 
-                case "BanUser"          :     banedUsers.Ban(contentFromClient.Login, contentFromClient.Message);                                                     break;
+                    case "LogOut": ClientComands.LogOut(contentFromClient.Login); break;
 
-                case "UnbanUser"        :     banedUsers.Unban(contentFromClient.Login);                                                                              break;
+                    case "ShowBannedUsers": if (contentFromClient.Login == "admin") ClientComands.ShowBannedUsers(client); break;
 
-                case "PrivatMessage"    :     ClientComands.PrivatMessage(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message);          break;
+                    case "ShowAllUsersForAdmin": ClientComands.ShowAllUsersForAdmin(client); break;
 
-                case "ForgotPassword"   :       AuthorizationServerCommand.ForgotPassword(contentFromClient.Login,contentFromClient.Message, client);                                          break;
+                    case "BanUser": banedUsers.Ban(contentFromClient.Login, contentFromClient.Message); break;
 
-                case "ChangePassword"   :       AuthorizationServerCommand.ChangePassword(contentFromClient.Login, contentFromClient.Message, client);                               break;
+                    case "UnbanUser": banedUsers.Unban(contentFromClient.Login); break;
+
+                    case "PrivatMessage": ClientComands.PrivatMessage(contentFromClient.Login, contentFromClient.NameDialog, contentFromClient.Message); break;
+
+                    case "ForgotPassword": AuthorizationServerCommand.ForgotPassword(contentFromClient.Login, contentFromClient.Message, client); break;
+
+                    case "ChangePassword": AuthorizationServerCommand.ChangePassword(contentFromClient.Login, contentFromClient.Message, client); break;
 
 
 
-                default: break;
+                    default: break;
+                }
             }
-
+            catch(Exception e)
+            {
+                CrashReports.Add(e.Message, "Dispatcher : Action - " + contentFromClient.Action);
+            }
             contentFromClient = null;
         }
     }

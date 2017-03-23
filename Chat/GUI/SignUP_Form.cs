@@ -22,7 +22,10 @@ namespace Chat
 
         private void btnSignUP_Click(object sender, EventArgs e)
         {
-            ServerCommands.SingUP(txtName.Text, txtLogin.Text, txtPass.Text);
+            if (txtLogin.Text != "Put your login" && txtName.Text != "Put your name" && txtPass.Text != "Put your password" && txtLogin.Text != "" && txtName.Text != "" && txtPass.Text != "")
+                ServerCommands.SingUP(txtName.Text, txtLogin.Text, txtPass.Text);
+            else
+                MessageBox.Show("Please put correct information in fields", "Error");
         }
 
         private void txtName_Click(object sender, EventArgs e)

@@ -80,7 +80,6 @@ namespace Chat
             foreach (string message in messages)
             {
                 write.WriteLine(message);
-                write.WriteLine(DateTime.Now);
             }
             write.Close();
         }

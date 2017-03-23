@@ -32,14 +32,17 @@ namespace AuthorizationServer
             return false;
         }
 
-        public string Read(string login, string password)
+        public string Read(string app, string login, string password)
         {
             string loginUser = "";
             SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'RegistredUsers' WHERE login = '"+login+"' AND "+"password = '"+password+"';", connection);
             SQLiteDataReader reader = command.ExecuteReader();
             foreach (DbDataRecord record in reader)
             {
-                loginUser = record["login"].ToString();
+                if (app == "BestChat")
+                    loginUser = record["name"].ToString();
+                else
+                    loginUser = record["login"].ToString();
             }
             if (loginUser != "" && loginUser != null)
                 return loginUser;

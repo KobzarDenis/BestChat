@@ -106,6 +106,20 @@ namespace Chat
             me.Say(message);
         }
 
+        public static void AuthorizationWithGoogle(string name, string login)
+        {
+            Content content = new Content("Google", name, login, "*", "User", "*", "*");
+            string message = content.GetContent(content);
+            me.Say(message);
+        }
+
+        public static void AuthorizationWithFaceBook(string name, string login)
+        {
+            Content content = new Content("FaceBook", name, login, "*", "User", "*", "*");
+            string message = content.GetContent(content);
+            me.Say(message);
+        }
+
         #region Admin setings
         public static void Ban(string login, string time)
         {

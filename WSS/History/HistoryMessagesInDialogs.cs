@@ -12,13 +12,13 @@ namespace WSS.History
     {
         public static void SaveHistory(string login, string nameDialog, string message)
         {
-            string writePath = HttpContext.Current.Server.MapPath("/Dialogs/"+ nameDialog + ".txt");
+            string writePath = AppDomain.CurrentDomain.BaseDirectory + "/Dialogs/"+ nameDialog + ".txt";
+            //string writePath = HttpContext.Current.Server.MapPath("/Dialogs/"+ nameDialog + ".txt");
 
             StreamWriter write;
             FileInfo file = new FileInfo(writePath);
             write = file.AppendText();
             write.WriteLine("[" + login + "] : " + message);
-            write.WriteLine(DateTime.Now);
             write.Close();
         }
     }

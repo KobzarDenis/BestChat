@@ -21,9 +21,9 @@ namespace AuthorizationServer
         public static RegistredUsers registredUsers;
 
 
-        public static void Authorization(string login, string password, TcpClient client)
+        public static void Authorization(string app, string login, string password, TcpClient client)
         {
-            string name = registredUsers.Read(login, password);
+            string name = registredUsers.Read(app, login, password);
             Content content = new Content("Authorization", name, "*", "*","*");
             string sms = content.GetContent(content);
             SendMessage(sms, client);

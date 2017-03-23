@@ -63,13 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangePassword.cs">
+    <Compile Include="GUI\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangePassword.Designer.cs">
+    <Compile Include="GUI\ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExternalAuth.cs" />
+    <Compile Include="ConnectionAPI\ExternalAuth.cs" />
     <Compile Include="GUI\ForgotPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,7 +120,7 @@
     <Compile Include="GUI\SignUP_Form.Designer.cs">
       <DependentUpon>SignUP_Form.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ChangePassword.resx">
+    <EmbeddedResource Include="GUI\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ForgotPassword.resx">

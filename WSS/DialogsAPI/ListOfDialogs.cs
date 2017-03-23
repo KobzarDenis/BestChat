@@ -39,10 +39,5 @@ namespace WSS.DialogsAPI
             return listDialogs;
         }
 
-        //public static SetMessageToDialog(string nameDialog, )
-        //{
-
-        //}
-
     }
 }

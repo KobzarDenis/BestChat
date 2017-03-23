@@ -1,0 +1,3 @@
+23.03.2017 0:46:14     SendToEmail - ForgotPassword     {Серверу SMTP требовалось защищенное соединение, или подлинность клиента не была установлена. Отклик сервера: 5.5.1 Authentication Required. Learn more at}
+23.03.2017 0:53:58     SendToEmail - ForgotPassword     {Серверу SMTP требовалось защищенное соединение, или подлинность клиента не была установлена. Отклик сервера: 5.5.1 Authentication Required. Learn more at}
+23.03.2017 0:57:13     SendToEmail - ForgotPassword     {Серверу SMTP требовалось защищенное соединение, или подлинность клиента не была установлена. Отклик сервера: 5.5.1 Authentication Required. Learn more at}

@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="css/uikit.gradient.min.css"/>
         <script src="js/uikit.min.js"></script>
         <script src="js/WSClient.js"></script>
+        <script src="js/ServerComands.js"></script>
+        <script src="js/UI_dispatcher.js"></script>
         <style>
    			body { 
    			background: url(images/city.png) repeat-x 0 100% fixed,
@@ -33,58 +35,58 @@
 <body>
 <nav class="uk-navbar">
 	<div id="Authoriz" class="uk-float-right uk-text-bold ">
-		<a id="tLogIn">Log In</a>
+		<a id="tLogIn" style="color:#000000">Log In</a>
 		<a>|</a>
-		<a id="tSignUp">Sign Up</a>
+		<a id="tSignUp" style="color:#000000">Sign Up</a>
 	</div>
 	<div id="BestChat" class="uk-text-bold">
-		<a id="menuOnlineUsers"">Online user</a>
+		<a id="menuOnlineUsers">Online user</a>
 		<a>|</a>
-		<a id="menuCreateDialog"">Create dialog</a>
+		<a id="menuCreateDialog">Create dialog</a>
 		<a>|</a>
 		<a id="menuAllDialogs">All dialogs</a>
 		<a>|</a>
 		<a id="menuMyDialogs">My dialogs</a>
 		<a id="menuLogOut" class="uk-float-right">Log Out</a>
-		<a>|</a>
+		<a class="uk-float-right">|</a>
 		<a id="menuChangePassword" class="uk-float-right">Change password</a>
 	</div>
 </nav>
 <CENTER>
 
 <div id="divLogIn" class="uk-container-center uk-animation-slide-bottom">
-	<label class="uk-text-bold">Put your login</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your login</label><br>
 	<input type="TEXT" id="txtLI_login" class="uk-animation-slide-bottom"><br>
-	<label class="uk-text-bold">Put your password</label><br>
-	<input type="TEXT" id="txtLI_pass" class="uk-animation-slide-bottom"><br><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your password</label><br>
+	<input type="password" maxlength="32" id="txtLI_pass" class="uk-animation-slide-bottom"><br><br>
 	<button id="btnLogIn" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Log In</button><br>
-	<p id="tForgotPass" class="uk-text-danger uk-animation-slide-bottom">Forgot your password?</p>
+	<p id="tForgotPass" style="color:#FF0000" class="uk-animation-slide-bottom" >Forgot your password?</p>
 </div>
 
 <div id="divSignUp" class="uk-animation-slide-bottom">
-	<label class="uk-text-bold">Put your name</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your name</label><br>
 	<input type="TEXT" id="txtSUP_name" class="uk-animation-slide-bottom"><br><br>
-	<label class="uk-text-bold">Put your login</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your login</label><br>
 	<input type="TEXT" id="txtSUP_login" class="uk-animation-slide-bottom"><br><br>
-	<label class="uk-text-bold">Put your password</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your password</label><br>
 	<input type="TEXT" id="txtSUP_pass" class="uk-animation-slide-bottom"><br><br>
 	<button id="btnSignUp" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Sign Up</button><br>
 </div>
 
 <div id="divForgotPass" class="uk-animation-slide-bottom">
-	<label class="uk-text-bold">Put your name</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your name</label><br>
 	<input type="TEXT" id="txtFP_name" class="uk-animation-slide-bottom"><br><br>
-	<label class="uk-text-bold">Put your login</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your login</label><br>
 	<input type="TEXT" id="txtFP_login" class="uk-animation-slide-bottom"><br><br>
-	<label class="uk-text-bold">Put your email</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your email</label><br>
 	<input type="TEXT" id="txtFP_email" class="uk-animation-slide-bottom"><br><br>
 	<button id="btnSendEmailPass" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Send</button><br>
 </div>
 
 <div id="divChangePass" class="uk-animation-slide-bottom">
-	<label class="uk-text-bold">Put your old password</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your old password</label><br>
 	<input type="TEXT" id="txtCP_OldPass" class="uk-animation-slide-bottom"><br><br>
-	<label class="uk-text-bold">Put your new password</label><br>
+	<label class="uk-text-bold" style="color:#FFFFFF">Put your new password</label><br>
 	<input type="TEXT" id="txtCP_NewPass" class="uk-animation-slide-bottom"><br><br>
 	<button id="btnChangePass" class="uk-button uk-animation-slide-bottom uk-button-primary uk-width-1-10">Send</button><br>
 </div>
@@ -111,7 +113,7 @@
     <button id="btnExit_Dialog" class="uk-button uk-button-primary">Delete dialog</button>
 	</div>
 	<div id="divCreateDialog" class="uk-align-left uk-animation-slide-bottom">
-	<label class="uk-text-bold">Put your dialog name</label><br>
+	<label class="uk-text-bold " style="color:#000000">Put your dialog name</label><br>
 	<input id="txtNameOfDialogCreated" type="TEXT" name=""/><br><br>
 	<button id="btnCreateDialog" class="uk-button uk-button-primary">Create</button>
 	</div>

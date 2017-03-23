@@ -51,6 +51,7 @@
 	width: 200px;
 	height: 300px;
 	background: #333;
+	color:#FFFFFF;
 }
 
 #listOfDialogs
@@ -58,6 +59,7 @@
 	width: 200px;
 	height: 300px;
 	background: #333;
+	color:#FFFFFF;
 }
 
 #listOfMyDialogs
@@ -65,4 +67,5 @@
 	width: 200px;
 	height: 300px;
 	background: #333;
+	color:#FFFFFF;
 }

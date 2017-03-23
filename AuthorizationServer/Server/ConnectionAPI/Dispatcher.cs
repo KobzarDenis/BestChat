@@ -48,7 +48,7 @@ namespace AuthorizationServer
 
             switch (contentFromClient.Action)
             {
-                case "Authorization" : ClientComands.Authorization(contentFromClient.Login, contentFromClient.Password, client); break;
+                case "Authorization" : ClientComands.Authorization(contentFromClient.Message, contentFromClient.Login, contentFromClient.Password, client); break;
                 case "SignUP"        : ClientComands.SignUP(contentFromClient.Name, contentFromClient.Login, contentFromClient.Password, client); break;
                 case "ForgotPassword": ClientComands.ForgotPassword(contentFromClient.Login, client); break;
                 case "ChangePassword": ClientComands.ChangePassword(contentFromClient.Login, contentFromClient.Password, client); break;
